@@ -1,1754 +1,1495 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>گرما پلاس | فروشگاه تخصصی گرمایش، سرمایش و آبرسانی</title>
-<meta name="description" content="گرما پلاس - نمایندگی رسمی ایران رادیاتور و بوتان | خرید پکیج، رادیاتور، کولر گازی و پمپ آب">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<style>
-/* ============ RESET & BASE ============ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
-@font-face{
-  font-family:'IRANYekanX';
-  src:url('https://garmlux.com/wp-content/uploads/2024/06/IRANYekanXVF.woff2') format('woff2-variations');
-  font-weight:100 900;
-  font-display:swap;
-}
-
-:root{
-  --bg-dark:#050f18;
-  --bg-darker:#080e1c;
-  --bg-card:#0a1622;
-  --bg-elevated:#0f1e2e;
-  --gold:#ecc14a;
-  --gold-light:#f9dc7a;
-  --gold-dark:#b8922e;
-  --gold-glow:rgba(236,193,74,.35);
-  --text:#f0f2f5;
-  --text-muted:#8b96a5;
-  --border:rgba(255,255,255,.08);
-  --border-hover:rgba(236,193,74,.4);
-  --radius:16px;
-  --radius-sm:10px;
-  --transition:.35s cubic-bezier(.4,0,.2,1);
-  --shadow-sm:0 2px 12px rgba(0,0,0,.25);
-  --shadow-md:0 8px 28px rgba(0,0,0,.35);
-  --shadow-lg:0 20px 50px rgba(0,0,0,.45);
-  --shadow-gold:0 10px 40px var(--gold-glow);
-  --header-bg:rgba(10,22,34,.55);
-  --header-bg-scrolled:rgba(10,22,34,.92);
-  --mega-bg:rgba(10,22,34,.96);
-}
-
-[data-theme="light"]{
-  --bg-dark:#f4f6fa;
-  --bg-darker:#eef1f6;
-  --bg-card:#ffffff;
-  --bg-elevated:#f8fafc;
-  --gold:#b8922e;
-  --gold-light:#d4a941;
-  --gold-dark:#8f7020;
-  --gold-glow:rgba(184,146,46,.25);
-  --text:#1a2332;
-  --text-muted:#4a5568;
-  --border:rgba(0,0,0,.1);
-  --border-hover:rgba(184,146,46,.55);
-  --shadow-sm:0 2px 12px rgba(0,0,0,.06);
-  --shadow-md:0 8px 28px rgba(0,0,0,.1);
-  --shadow-lg:0 20px 50px rgba(0,0,0,.15);
-  --shadow-gold:0 10px 40px rgba(184,146,46,.2);
-  --header-bg:rgba(255,255,255,.75);
-  --header-bg-scrolled:rgba(255,255,255,.96);
-  --mega-bg:rgba(255,255,255,.99);
-}
-
-html{scroll-behavior:smooth;scroll-padding-top:100px}
-
-body{
-  font-family:'IRANYekanX','Segoe UI',Tahoma,sans-serif;
-  background:var(--bg-dark);
-  color:var(--text);
-  line-height:1.8;
-  overflow-x:hidden;
-  direction:rtl;
-  -webkit-font-smoothing:antialiased;
-  transition:background .4s,color .4s;
-}
-
-body::before{
-  content:'';
-  position:fixed;inset:0;
-  background:
-    radial-gradient(circle at 15% 15%, var(--gold-glow), transparent 40%),
-    radial-gradient(circle at 85% 60%, rgba(59,130,246,.04), transparent 45%);
-  pointer-events:none;
-  z-index:0;
-  opacity:.5;
-}
-
-a{color:inherit;text-decoration:none;transition:color var(--transition)}
-img{max-width:100%;display:block}
-button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
-ul{list-style:none}
-
-.container{max-width:1280px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-
-.section{padding:80px 0;position:relative}
-
-.section-title{
-  font-size:2rem;
-  font-weight:900;
-  text-align:center;
-  margin-bottom:50px;
-  color:var(--text);
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:16px;
-}
-.section-title::before,
-.section-title::after{
-  content:'';
-  height:2px;
-  width:60px;
-  background:linear-gradient(90deg,transparent,var(--gold));
-  border-radius:2px;
-}
-.section-title::after{
-  background:linear-gradient(90deg,var(--gold),transparent);
-}
-
-/* ============ TOAST ============ */
-.toast-container{
-  position:fixed;
-  top:24px;left:50%;
-  transform:translateX(-50%);
-  z-index:10000;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  pointer-events:none;
-}
-.toast{
-  background:var(--bg-card);
-  border:1px solid var(--border-hover);
-  color:var(--text);
-  padding:14px 24px;
-  border-radius:50px;
-  font-size:.9rem;
-  font-weight:600;
-  box-shadow:var(--shadow-lg),0 0 30px var(--gold-glow);
-  display:flex;
-  align-items:center;
-  gap:10px;
-  animation:toastIn .4s cubic-bezier(.4,0,.2,1);
-  pointer-events:auto;
-}
-.toast i{color:var(--gold);font-size:1.1rem}
-.toast.out{animation:toastOut .4s cubic-bezier(.4,0,.2,1) forwards}
-@keyframes toastIn{from{opacity:0;transform:translateY(-20px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes toastOut{to{opacity:0;transform:translateY(-20px) scale(.9)}}
-
-/* ============ SCROLL PROGRESS ============ */
-.scroll-progress{
-  position:fixed;
-  top:0;right:0;
-  height:3px;
-  width:0%;
-  background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light));
-  z-index:2001;
-  box-shadow:0 0 10px var(--gold-glow);
-  transition:width .1s linear;
-}
-
-/* ============ BUTTONS ============ */
-.btn-gold{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  color:#1a2332;
-  font-weight:800;
-  font-size:.95rem;
-  padding:14px 32px;
-  border-radius:50px;
-  transition:var(--transition);
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 6px 20px rgba(236,193,74,.25);
-}
-.btn-gold::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg,var(--gold-light),var(--gold));
-  opacity:0;
-  transition:var(--transition);
-}
-.btn-gold:hover::before{opacity:1}
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(236,193,74,.5)}
-.btn-gold > *{position:relative;z-index:1}
-
-.btn-outline{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  background:transparent;
-  color:var(--gold);
-  font-weight:700;
-  padding:13px 30px;
-  border-radius:50px;
-  border:1.5px solid var(--gold);
-  transition:var(--transition);
-}
-.btn-outline:hover{background:var(--gold);color:#1a2332}
-
-.icon-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:42px;height:42px;
-  border-radius:12px;
-  color:var(--text);
-  transition:all .3s;
-  position:relative;
-  border:1px solid transparent;
-}
-.icon-btn:hover{
-  background:var(--gold-glow);
-  border-color:var(--border-hover);
-  color:var(--gold);
-  transform:translateY(-2px);
-}
-
-/* ============ HEADER ============ */
-.site-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:transparent;
-  transition:background .4s ease;
-  overflow:visible;
-}
-
-.header-glass{
-  position:relative;
-  margin-top:16px;
-  background:var(--header-bg);
-  backdrop-filter:blur(24px) saturate(180%);
-  -webkit-backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid var(--border);
-  border-radius:20px;
-  box-shadow:var(--shadow-md), inset 0 1px 0 rgba(255,255,255,.05);
-  transition:all .4s ease;
-  /* ❌ overflow:hidden حذف شده تا مگا منو بریده نشه */
-}
-
-/* خط طلایی بالا */
-.header-glass::before{
-  content:'';
-  position:absolute;
-  top:0;
-  left:20px;
-  right:20px;
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity:.6;
-  pointer-events:none;
-  z-index:1;
-  border-radius:20px 20px 0 0;
-}
-
-.site-header.scrolled .header-glass{
-  background:var(--header-bg-scrolled);
-  border-color:var(--border-hover);
-  box-shadow:var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.05);
-}
-
-.header-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  height:72px;
-  gap:24px;
-  padding:0 24px;
-}
-
-.logo-text{
-  font-size:1.4rem;
-  font-weight:900;
-  letter-spacing:-.8px;
-  color:var(--text);
-  display:flex;
-  align-items:center;
-  gap:10px;
-  line-height:1;
-  transition:transform .3s;
-  white-space:nowrap;
-}
-.logo-text:hover{transform:scale(1.04)}
-.logo-text::before{
-  content:'🔥';
-  font-size:1.5rem;
-  filter:drop-shadow(0 0 10px var(--gold-glow));
-}
-.logo-text span{color:var(--gold)}
-
-/* ============ MAIN NAV ============ */
-.main-nav{
-  position:relative;
-  z-index:10;
-}
-.main-nav ul{display:flex;gap:4px;align-items:center}
-.main-nav > ul > li > a{
-  font-size:.9rem;
-  font-weight:600;
-  padding:9px 14px;
-  border-radius:50px;
-  transition:all .3s ease;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  position:relative;
-  color:var(--text);
-  white-space:nowrap;
-}
-.main-nav > ul > li > a::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  border-radius:50px;
-  background:var(--gold-glow);
-  opacity:0;
-  transition:opacity .3s;
-  z-index:-1;
-}
-.main-nav > ul > li > a:hover{color:var(--gold);transform:translateY(-1px)}
-.main-nav > ul > li > a:hover::before{opacity:1}
-.main-nav i{font-size:.6rem;opacity:.6;transition:transform .3s}
-.has-mega:hover > a i{transform:rotate(180deg)}
-
-/* ============ MEGA MENU ============ */
-.has-mega{position:relative}
-
-/* پل نامرئی بین آیتم و مگا منو */
-.has-mega::after{
-  content:'';
-  position:absolute;
-  top:100%;
-  right:0;
-  left:0;
-  height:16px;
-  background:transparent;
-  z-index:1;
-}
-
-.mega-menu{
-  position:absolute;
-  top:calc(100% + 12px);
-  right:0;
-  background:var(--mega-bg);
-  backdrop-filter:blur(28px) saturate(180%);
-  -webkit-backdrop-filter:blur(28px) saturate(180%);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:24px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:24px;
-  min-width:540px;
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(12px);
-  transition:all .35s cubic-bezier(.4,0,.2,1);
-  box-shadow:var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.05);
-  overflow:hidden;
-  z-index:50;
-  pointer-events:none;
-}
-.mega-menu::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-}
-.has-mega:hover .mega-menu{
-  opacity:1;
-  visibility:visible;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-.mega-col h4{
-  color:var(--gold);
-  font-size:.82rem;
-  margin-bottom:12px;
-  padding-bottom:8px;
-  border-bottom:1px solid var(--border);
-  font-weight:800;
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.mega-col h4 i{font-size:.75rem}
-.mega-col a{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:7px 0;
-  font-size:.83rem;
-  color:var(--text-muted);
-  transition:all .25s;
-  border-radius:6px;
-}
-.mega-col a::before{
-  content:'›';
-  color:var(--gold);
-  font-weight:900;
-  opacity:0;
-  transition:all .25s;
-}
-.mega-col a:hover{color:var(--gold);padding-right:6px}
-.mega-col a:hover::before{opacity:1}
-
-.header-actions{display:flex;gap:2px;align-items:center}
-
-.cart-count{
-  position:absolute;
-  top:-2px;left:-2px;
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  color:#1a2332;
-  font-size:.6rem;
-  font-weight:900;
-  width:18px;height:18px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 0 0 2px var(--bg-dark),0 0 12px var(--gold-glow);
-  animation:pulse-badge 2s infinite;
-}
-@keyframes pulse-badge{
-  0%,100%{box-shadow:0 0 0 2px var(--bg-dark),0 0 12px var(--gold-glow)}
-  50%{box-shadow:0 0 0 2px var(--bg-dark),0 0 20px var(--gold-glow)}
-}
-
-.menu-toggle{display:none}
-.theme-toggle .fa-sun{display:none}
-[data-theme="light"] .theme-toggle .fa-sun{display:inline}
-[data-theme="light"] .theme-toggle .fa-moon{display:none}
-
-/* ============ MOBILE DRAWER ============ */
-.mobile-drawer{
-  position:fixed;
-  top:0;right:0;
-  height:100vh;
-  width:min(360px,85vw);
-  background:var(--bg-card);
-  backdrop-filter:blur(28px);
-  border-left:1px solid var(--border);
-  z-index:3000;
-  padding:24px;
-  transform:translateX(100%);
-  transition:transform .4s cubic-bezier(.4,0,.2,1);
-  overflow-y:auto;
-}
-.mobile-drawer.open{transform:translateX(0)}
-.drawer-overlay{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(4px);
-  z-index:2999;
-  opacity:0;
-  visibility:hidden;
-  transition:var(--transition);
-}
-.drawer-overlay.open{opacity:1;visibility:visible}
-.drawer-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:24px;
-  padding-bottom:16px;
-  border-bottom:1px solid var(--border);
-}
-.drawer-nav ul li{border-bottom:1px solid var(--border)}
-.drawer-nav > ul > li > a,
-.drawer-nav > ul > li > button{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  width:100%;
-  padding:14px 4px;
-  font-size:.95rem;
-  font-weight:600;
-  color:var(--text);
-  text-align:right;
-  transition:var(--transition);
-}
-.drawer-nav > ul > li > a:hover,
-.drawer-nav > ul > li > button:hover{color:var(--gold);padding-right:8px}
-.drawer-nav i.arrow{font-size:.7rem;transition:transform .3s}
-.drawer-nav li.open i.arrow{transform:rotate(180deg)}
-.drawer-submenu{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .4s ease;
-  padding-right:16px;
-}
-.drawer-nav li.open .drawer-submenu{max-height:500px}
-.drawer-submenu a{
-  display:block;
-  padding:8px 0;
-  font-size:.85rem;
-  color:var(--text-muted);
-}
-.drawer-submenu a:hover{color:var(--gold)}
-
-/* ============ SEARCH OVERLAY ============ */
-.search-overlay{
-  position:fixed;inset:0;
-  background:rgba(5,15,24,.92);
-  backdrop-filter:blur(24px);
-  z-index:2000;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding-top:15vh;
-  opacity:0;
-  visibility:hidden;
-  transition:var(--transition);
-}
-[data-theme="light"] .search-overlay{background:rgba(244,246,250,.96)}
-.search-overlay.active{opacity:1;visibility:visible}
-.close-search{
-  position:absolute;
-  top:30px;left:30px;
-  font-size:2.4rem;
-  color:var(--text);
-  width:56px;height:56px;
-  border-radius:50%;
-  display:grid;place-items:center;
-  transition:var(--transition);
-}
-.close-search:hover{background:var(--gold-glow);color:var(--gold);transform:rotate(90deg)}
-.search-wrap{width:90%;max-width:760px}
-.search-form{
-  display:flex;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:60px;
-  overflow:hidden;
-  box-shadow:var(--shadow-lg);
-  margin-bottom:20px;
-}
-.search-form input{
-  flex:1;
-  background:none;border:0;
-  padding:20px 28px;
-  color:var(--text);
-  font-family:inherit;
-  font-size:1rem;
-  outline:none;
-}
-.search-form input::placeholder{color:var(--text-muted)}
-.search-form button{
-  background:var(--gold);
-  color:#1a2332;
-  padding:0 32px;
-  font-size:1.1rem;
-  transition:var(--transition);
-}
-.search-form button:hover{background:var(--gold-light)}
-.search-suggestions{
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:12px;
-  max-height:400px;
-  overflow-y:auto;
-}
-.suggestion-item{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:12px 14px;
-  border-radius:10px;
-  transition:var(--transition);
-  cursor:pointer;
-}
-.suggestion-item:hover{background:var(--gold-glow)}
-.suggestion-item i{color:var(--gold);font-size:.9rem}
-.suggestion-text{flex:1;font-size:.9rem;font-weight:600;color:var(--text)}
-.suggestion-cat{font-size:.75rem;color:var(--text-muted)}
-
-/* ============ CART DRAWER ============ */
-.cart-drawer{
-  position:fixed;
-  top:0;left:0;
-  height:100vh;
-  width:min(420px,90vw);
-  background:var(--bg-card);
-  border-right:1px solid var(--border);
-  z-index:3000;
-  transform:translateX(-100%);
-  transition:transform .4s cubic-bezier(.4,0,.2,1);
-  display:flex;
-  flex-direction:column;
-  box-shadow:var(--shadow-lg);
-}
-.cart-drawer.open{transform:translateX(0)}
-.cart-header{
-  padding:20px 24px;
-  border-bottom:1px solid var(--border);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.cart-header h3{font-size:1.1rem;font-weight:800;display:flex;align-items:center;gap:10px;color:var(--text)}
-.cart-body{flex:1;overflow-y:auto;padding:20px}
-.cart-empty{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  height:100%;
-  color:var(--text-muted);
-  text-align:center;
-  gap:16px;
-}
-.cart-empty i{font-size:3rem;color:var(--gold);opacity:.4}
-.cart-empty p{color:var(--text-muted)}
-.cart-item{
-  display:flex;
-  gap:12px;
-  padding:12px;
-  background:var(--bg-elevated);
-  border-radius:12px;
-  margin-bottom:12px;
-  animation:slideIn .3s ease;
-}
-@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-.cart-item img{
-  width:70px;height:70px;
-  border-radius:8px;
-  object-fit:contain;
-  background:#fff;
-  padding:6px;
-  flex-shrink:0;
-}
-.cart-item-info{flex:1;min-width:0}
-.cart-item-title{font-size:.82rem;font-weight:700;margin-bottom:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)}
-.cart-item-price{font-size:.9rem;color:var(--gold);font-weight:800}
-.cart-item-remove{
-  width:28px;height:28px;
-  border-radius:8px;
-  background:rgba(230,57,70,.15);
-  color:#e63946;
-  display:grid;place-items:center;
-  font-size:.8rem;
-  transition:var(--transition);
-  align-self:flex-start;
-}
-.cart-item-remove:hover{background:#e63946;color:#fff}
-.cart-footer{
-  padding:20px 24px;
-  border-top:1px solid var(--border);
-  background:var(--bg-elevated);
-}
-.cart-total{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:14px;
-  font-weight:800;
-  color:var(--text);
-}
-.cart-total-price{color:var(--gold);font-size:1.2rem}
-.cart-checkout{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  color:#1a2332;
-  font-weight:800;
-  font-size:.95rem;
-  transition:var(--transition);
-}
-.cart-checkout:hover{transform:translateY(-2px);box-shadow:0 10px 30px var(--gold-glow)}
-
-/* ============ HERO ============ */
-.hero{
-  position:relative;
-  height:92vh;
-  min-height:640px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
-  margin-top:-100px;
-  padding-top:100px;
-}
-.hero-video{
-  position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;
-}
-.hero-overlay{
-  position:absolute;inset:0;
-  background:
-    linear-gradient(180deg,rgba(5,15,24,.4) 0%,rgba(5,15,24,.7) 50%,rgba(5,15,24,.95) 100%),
-    radial-gradient(circle at 50% 40%,transparent,rgba(5,15,24,.6));
-}
-.hero::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:0;right:0;
-  height:200px;
-  background:linear-gradient(0deg,var(--bg-dark),transparent);
-  z-index:1;
-}
-.hero-content{
-  position:relative;
-  z-index:2;
-  max-width:800px;
-  padding:0 24px;
-  animation:fadeInUp 1s ease both;
-}
-@keyframes fadeInUp{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-.hero-subtitle{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  color:var(--gold-light);
-  font-size:.85rem;
-  font-weight:700;
-  margin-bottom:22px;
-  padding:8px 20px;
-  background:rgba(236,193,74,.15);
-  border:1px solid rgba(236,193,74,.4);
-  border-radius:50px;
-  backdrop-filter:blur(10px);
-}
-.hero-subtitle::before{
-  content:'';
-  width:8px;height:8px;
-  border-radius:50%;
-  background:var(--gold);
-  box-shadow:0 0 12px var(--gold);
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.5;transform:scale(1.3)}
-}
-
-.hero-title{
-  font-size:clamp(2rem,4.5vw,3.4rem);
-  font-weight:900;
-  margin-bottom:22px;
-  line-height:1.35;
-  color:#fff;
-  text-shadow:0 4px 20px rgba(0,0,0,.6);
-}
-.hero-desc{
-  font-size:1.05rem;
-  color:rgba(255,255,255,.92);
-  margin-bottom:36px;
-  max-width:600px;
-  margin-left:auto;
-  margin-right:auto;
-  line-height:1.9;
-}
-.hero-desc strong{color:var(--gold-light);font-weight:800}
-.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-
-.hero-scroll{
-  position:absolute;
-  bottom:36px;left:50%;
-  transform:translateX(-50%);
-  color:rgba(255,255,255,.7);
-  font-size:.8rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:8px;
-  z-index:2;
-  animation:bounce 2s infinite;
-}
-@keyframes bounce{
-  0%,100%{transform:translateX(-50%) translateY(0)}
-  50%{transform:translateX(-50%) translateY(8px)}
-}
-
-/* ============ FEATURE STRIP ============ */
-.feature-strip{
-  background:var(--bg-card);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:28px 0;
-  position:relative;
-  z-index:3;
-}
-.features-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:24px;
-}
-.feature-item{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:8px 16px;
-}
-.feature-icon{
-  width:52px;height:52px;
-  border-radius:14px;
-  background:var(--gold-glow);
-  border:1px solid var(--border-hover);
-  color:var(--gold);
-  display:grid;place-items:center;
-  font-size:1.25rem;
-  flex-shrink:0;
-  transition:var(--transition);
-}
-.feature-item:hover .feature-icon{
-  transform:rotate(-6deg) scale(1.08);
-  background:var(--gold);
-  color:#1a2332;
-}
-.feature-text h4{font-size:.92rem;font-weight:800;margin-bottom:2px;color:var(--text)}
-.feature-text p{font-size:.78rem;color:var(--text-muted)}
-
-/* ============ TABS ============ */
-.tabs-nav{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-bottom:50px;
-}
-.tab-btn{
-  padding:13px 26px;
-  border-radius:50px;
-  border:1px solid var(--border);
-  background:var(--bg-card);
-  color:var(--text-muted);
-  font-size:.92rem;
-  font-weight:700;
-  transition:var(--transition);
-}
-.tab-btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
-.tab-btn.active{
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  color:#1a2332;
-  border-color:var(--gold);
-  box-shadow:0 6px 20px rgba(236,193,74,.3);
-}
-
-.tab-panel{display:none;animation:fadeIn .5s}
-.tab-panel.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-.cat-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-  gap:22px;
-}
-.cat-card{
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  overflow:hidden;
-  transition:var(--transition);
-  position:relative;
-}
-.cat-card::before{
-  content:'';
-  position:absolute;inset:0;
-  background:linear-gradient(135deg,var(--gold-glow),transparent);
-  opacity:0;
-  transition:var(--transition);
-  z-index:0;
-}
-.cat-card:hover{
-  transform:translateY(-8px);
-  border-color:var(--border-hover);
-  box-shadow:var(--shadow-gold);
-}
-.cat-card:hover::before{opacity:1}
-.cat-img{
-  aspect-ratio:1;
-  background-size:cover;
-  background-position:center;
-  transition:transform .6s cubic-bezier(.4,0,.2,1);
-  position:relative;
-}
-.cat-card:hover .cat-img{transform:scale(1.1)}
-.cat-info{
-  padding:16px;
-  text-align:center;
-  position:relative;
-  z-index:1;
-  background:var(--bg-card);
-}
-.cat-info h3{font-size:.98rem;margin-bottom:6px;font-weight:700;color:var(--text)}
-.cat-info span{font-size:.78rem;color:var(--gold);font-weight:600}
-
-/* ============ BRANDS ============ */
-.brands-section{background:var(--bg-darker);overflow:hidden}
-.brands-track{
-  display:flex;
-  gap:60px;
-  animation:scrollBrands 30s linear infinite;
-  width:max-content;
-}
-.brands-track:hover{animation-play-state:paused}
-@keyframes scrollBrands{
-  from{transform:translateX(0)}
-  to{transform:translateX(50%)}
-}
-.brands-track img{
-  height:50px;
-  filter:brightness(0) invert(.5);
-  opacity:.6;
-  transition:var(--transition);
-  flex-shrink:0;
-}
-[data-theme="light"] .brands-track img{
-  filter:brightness(0) invert(.3);
-  opacity:.5;
-}
-.brands-track img:hover{opacity:1;filter:none}
-
-/* ============ DUAL BANNERS ============ */
-.dual-banner{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.promo-banner{
-  border-radius:var(--radius);
-  overflow:hidden;
-  transition:var(--transition);
-  position:relative;
-}
-.promo-banner:hover{transform:scale(1.02);box-shadow:var(--shadow-gold)}
-
-/* ============ DISCOUNT ============ */
-.discount-section{background:var(--bg-darker);position:relative}
-.discount-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:24px;
-  margin-bottom:40px;
-  padding:30px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  position:relative;
-  overflow:hidden;
-}
-.discount-header::before{
-  content:'';
-  position:absolute;
-  top:-50%;left:-10%;
-  width:300px;height:300px;
-  background:radial-gradient(circle,var(--gold-glow),transparent 70%);
-  opacity:.3;
-  pointer-events:none;
-}
-.discount-info{display:flex;align-items:center;gap:18px;position:relative;z-index:1}
-.discount-badge{
-  width:64px;height:64px;
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#1a2332;
-  font-size:1.5rem;
-  box-shadow:0 0 30px var(--gold-glow);
-  animation:pulse-shadow 2s infinite;
-}
-@keyframes pulse-shadow{
-  0%,100%{box-shadow:0 0 30px var(--gold-glow)}
-  50%{box-shadow:0 0 50px var(--gold-glow)}
-}
-.discount-info h3{font-size:1.25rem;margin-bottom:4px;font-weight:800;color:var(--text)}
-.discount-info p{font-size:.85rem;color:var(--text-muted)}
-
-.countdown{display:flex;gap:10px;position:relative;z-index:1}
-.count-box{
-  background:var(--gold-glow);
-  border:1px solid var(--border-hover);
-  border-radius:12px;
-  padding:12px 16px;
-  text-align:center;
-  min-width:70px;
-  backdrop-filter:blur(10px);
-}
-.count-box span{
-  display:block;
-  font-size:1.5rem;
-  font-weight:900;
-  color:var(--gold);
-  font-variant-numeric:tabular-nums;
-  line-height:1.2;
-}
-.count-box label{font-size:.7rem;color:var(--text-muted);margin-top:2px;display:block}
-
-/* ============ PRODUCT CAROUSEL ============ */
-.products-carousel{position:relative;display:flex;align-items:center;gap:14px}
-.carousel-track{
-  flex:1;
-  display:flex;
-  gap:22px;
-  overflow-x:auto;
-  scroll-behavior:smooth;
-  scrollbar-width:none;
-  padding:8px 4px;
-}
-.carousel-track::-webkit-scrollbar{display:none}
-
-.carousel-arrow{
-  width:48px;height:48px;
-  min-width:48px;
-  border-radius:50%;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  color:var(--text);
-  transition:var(--transition);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.carousel-arrow:hover{
-  background:var(--gold);
-  color:#1a2332;
-  border-color:var(--gold);
-  transform:scale(1.1);
-  box-shadow:0 6px 20px rgba(236,193,74,.4);
-}
-.carousel-arrow:disabled{opacity:.25;cursor:not-allowed;transform:none}
-
-.product-card{
-  min-width:250px;
-  max-width:250px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  overflow:hidden;
-  transition:var(--transition);
-  display:flex;
-  flex-direction:column;
-  position:relative;
-}
-.product-card:hover{
-  border-color:var(--border-hover);
-  transform:translateY(-8px);
-  box-shadow:var(--shadow-gold);
-}
-.product-img{
-  position:relative;
-  aspect-ratio:1;
-  background:#fff;
-  overflow:hidden;
-}
-.product-img img{
-  width:100%;height:100%;
-  object-fit:contain;
-  padding:14px;
-  transition:transform .5s cubic-bezier(.4,0,.2,1);
-}
-.product-card:hover .product-img img{transform:scale(1.1)}
-
-.sale-badge{
-  position:absolute;
-  top:12px;right:12px;
-  background:linear-gradient(135deg,#e63946,#c1121f);
-  color:#fff;
-  padding:4px 12px;
-  border-radius:20px;
-  font-size:.72rem;
-  font-weight:800;
-  box-shadow:0 3px 12px rgba(230,57,70,.5);
-  z-index:2;
-}
-
-.stock-badge{
-  position:absolute;
-  top:12px;left:12px;
-  background:rgba(37,211,102,.2);
-  backdrop-filter:blur(10px);
-  color:#0a8a4a;
-  padding:3px 10px;
-  border-radius:20px;
-  font-size:.7rem;
-  font-weight:700;
-  border:1px solid rgba(37,211,102,.4);
-  z-index:2;
-  display:flex;
-  align-items:center;
-  gap:4px;
-}
-.stock-badge::before{
-  content:'';
-  width:6px;height:6px;
-  border-radius:50%;
-  background:#25D366;
-  animation:pulse 1.5s infinite;
-}
-
-.product-actions{
-  position:absolute;
-  top:44px;left:12px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  opacity:0;
-  transform:translateX(-10px);
-  transition:var(--transition);
-  z-index:2;
-}
-.product-card:hover .product-actions{opacity:1;transform:translateX(0)}
-.product-action-btn{
-  width:36px;height:36px;
-  border-radius:50%;
-  background:#fff;
-  color:#1a2332;
-  display:grid;place-items:center;
-  font-size:.85rem;
-  box-shadow:0 3px 10px rgba(0,0,0,.15);
-  transition:var(--transition);
-}
-.product-action-btn:hover{background:var(--gold);transform:scale(1.1)}
-
-.product-body{
-  padding:16px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  flex:1;
-}
-.product-rating{
-  display:flex;
-  align-items:center;
-  gap:2px;
-  font-size:.72rem;
-  color:var(--gold);
-  margin-bottom:4px;
-}
-.product-rating span{color:var(--text-muted);margin-right:6px}
-.product-title{
-  font-size:.88rem;
-  font-weight:700;
-  line-height:1.6;
-  min-height:2.8em;
-  overflow:hidden;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  color:var(--text);
-}
-.product-price{display:flex;flex-direction:column;gap:4px}
-.old-price{
-  font-size:.78rem;
-  color:var(--text-muted);
-  text-decoration:line-through;
-}
-.new-price{
-  font-size:1.05rem;
-  font-weight:900;
-  color:var(--gold);
-}
-.add-to-cart{
-  margin-top:auto;
-  background:var(--gold-glow);
-  border:1px solid var(--border-hover);
-  color:var(--gold);
-  padding:11px;
-  border-radius:10px;
-  font-size:.85rem;
-  font-weight:700;
-  transition:var(--transition);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-}
-.add-to-cart:hover{
-  background:var(--gold);
-  color:#1a2332;
-  box-shadow:0 6px 18px rgba(236,193,74,.35);
-}
-
-/* ============ STATS ============ */
-.stats-section{
-  background:var(--bg-card);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:50px 0;
-}
-.stats-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:30px;
-  text-align:center;
-}
-.stat-item{
-  padding:20px;
-  border-radius:var(--radius);
-  transition:var(--transition);
-}
-.stat-item:hover{background:var(--gold-glow)}
-.stat-icon{
-  font-size:2rem;
-  color:var(--gold);
-  margin-bottom:12px;
-  display:inline-block;
-}
-.stat-number{
-  font-size:2.4rem;
-  font-weight:900;
-  color:var(--text);
-  line-height:1;
-  margin-bottom:6px;
-  font-variant-numeric:tabular-nums;
-}
-.stat-number span{color:var(--gold)}
-.stat-label{font-size:.85rem;color:var(--text-muted);font-weight:600}
-
-/* ============ WHY US ============ */
-.why-us-section{position:relative;overflow:hidden}
-.why-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
-}
-.why-card{
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:32px 26px;
-  transition:var(--transition);
-  position:relative;
-  overflow:hidden;
-}
-.why-card::before{
-  content:'';
-  position:absolute;
-  top:0;right:0;
-  width:100px;height:100px;
-  background:radial-gradient(circle,var(--gold-glow),transparent 70%);
-  opacity:0;
-  transition:var(--transition);
-}
-.why-card:hover{
-  border-color:var(--border-hover);
-  transform:translateY(-6px);
-  box-shadow:var(--shadow-gold);
-}
-.why-card:hover::before{opacity:.5}
-.why-icon{
-  width:60px;height:60px;
-  border-radius:16px;
-  background:var(--gold-glow);
-  border:1px solid var(--border-hover);
-  color:var(--gold);
-  display:grid;place-items:center;
-  font-size:1.5rem;
-  margin-bottom:20px;
-  transition:var(--transition);
-}
-.why-card:hover .why-icon{
-  background:var(--gold);
-  color:#1a2332;
-  transform:rotate(-8deg) scale(1.08);
-}
-.why-card h3{font-size:1.05rem;margin-bottom:10px;font-weight:800;color:var(--text)}
-.why-card p{font-size:.88rem;color:var(--text-muted);line-height:1.8}
-
-/* ============ COUPON ============ */
-.coupon-banner{
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  border-radius:var(--radius);
-  padding:32px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:24px;
-  flex-wrap:wrap;
-  color:#1a2332;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 20px 50px var(--gold-glow);
-}
-.coupon-banner::before{
-  content:'';
-  position:absolute;
-  top:-50%;left:-5%;
-  width:250px;height:250px;
-  background:rgba(255,255,255,.3);
-  border-radius:50%;
-  filter:blur(40px);
-}
-.coupon-text{position:relative;z-index:1}
-.coupon-text h3{font-size:1.4rem;font-weight:900;margin-bottom:6px}
-.coupon-text p{font-size:.9rem;opacity:.85}
-.coupon-code{
-  position:relative;
-  z-index:1;
-  background:#050f18;
-  color:var(--gold);
-  padding:14px 28px;
-  border-radius:12px;
-  font-weight:900;
-  font-size:1.2rem;
-  letter-spacing:2px;
-  border:2px dashed var(--gold);
-  cursor:pointer;
-  transition:var(--transition);
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.coupon-code:hover{transform:scale(1.05)}
-.coupon-code i{font-size:.9rem;opacity:.7}
-
-/* ============ CONDENSER ============ */
-.condenser-section{
-  background-size:cover;
-  background-position:center;
-  background-attachment:fixed;
-  position:relative;
-  padding:0;
-}
-.condenser-section::before{
-  content:'';
-  position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(5,15,24,.95) 0%,rgba(5,15,24,.6) 100%);
-}
-.condenser-inner{position:relative;padding:120px 24px;text-align:right}
-.condenser-content h2{font-size:2.4rem;margin-bottom:12px;font-weight:900;color:#fff}
-.condenser-content p{
-  color:var(--gold-light);
-  margin-bottom:30px;
-  font-size:1rem;
-  font-weight:600;
-  letter-spacing:1px;
-}
-
-/* ============ TESTIMONIALS ============ */
-.testimonials{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:24px;
-}
-.testimonial-card{
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:32px 28px;
-  text-align:center;
-  transition:var(--transition);
-  position:relative;
-  overflow:hidden;
-}
-.testimonial-card::before{
-  content:'"';
-  position:absolute;
-  top:0;right:20px;
-  font-size:6rem;
-  color:var(--gold-glow);
-  font-family:serif;
-  line-height:1;
-}
-.testimonial-card:hover{
-  border-color:var(--border-hover);
-  transform:translateY(-6px);
-  box-shadow:var(--shadow-gold);
-}
-.testimonial-card > i{
-  font-size:2rem;
-  color:var(--gold);
-  margin-bottom:18px;
-  display:inline-block;
-}
-.testimonial-card h4{margin-bottom:4px;font-weight:800;font-size:1.05rem;color:var(--text)}
-.testimonial-card > p{color:var(--text-muted);font-size:.8rem}
-.testimonial-stars{color:var(--gold);margin-bottom:8px;font-size:.85rem}
-.testimonial-card .quote{
-  margin-top:20px;
-  padding-top:20px;
-  border-top:1px solid var(--border);
-  color:var(--text);
-  font-size:.9rem;
-  line-height:1.9;
-  position:relative;
-  z-index:1;
-}
-
-/* ============ BLOG ============ */
-.blog-section{background:var(--bg-darker)}
-.blog-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:24px;
-}
-.blog-card{
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  overflow:hidden;
-  transition:var(--transition);
-}
-.blog-card:hover{
-  border-color:var(--border-hover);
-  transform:translateY(-6px);
-  box-shadow:var(--shadow-gold);
-}
-.blog-card img{
-  aspect-ratio:16/9;
-  object-fit:cover;
-  width:100%;
-  transition:transform .6s;
-}
-.blog-card:hover img{transform:scale(1.05)}
-.blog-img-wrap{overflow:hidden}
-.blog-body{padding:22px}
-.blog-date{
-  font-size:.78rem;
-  color:var(--text-muted);
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  margin-bottom:12px;
-  padding:4px 12px;
-  background:var(--gold-glow);
-  border-radius:20px;
-}
-.blog-body h3{
-  font-size:1rem;
-  line-height:1.7;
-  margin-bottom:16px;
-  font-weight:700;
-  transition:color var(--transition);
-  color:var(--text);
-}
-.blog-card:hover h3{color:var(--gold)}
-.read-more{
-  color:var(--gold);
-  font-size:.85rem;
-  font-weight:700;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  transition:gap var(--transition);
-}
-.read-more:hover{gap:12px}
-
-/* ============ NEWSLETTER ============ */
-.newsletter-section{
-  background:var(--bg-card);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:60px 0;
-  position:relative;
-  overflow:hidden;
-}
-.newsletter-section::before{
-  content:'';
-  position:absolute;
-  top:-100px;right:-100px;
-  width:400px;height:400px;
-  background:radial-gradient(circle,var(--gold-glow),transparent 70%);
-  opacity:.15;
-}
-.newsletter-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:40px;
-  flex-wrap:wrap;
-  position:relative;
-  z-index:1;
-}
-.newsletter-text h3{font-size:1.5rem;font-weight:900;margin-bottom:8px;color:var(--text)}
-.newsletter-text p{color:var(--text-muted);font-size:.9rem}
-.newsletter-form{
-  display:flex;
-  background:var(--bg-elevated);
-  border:1px solid var(--border);
-  border-radius:50px;
-  padding:6px;
-  min-width:380px;
-  max-width:100%;
-}
-.newsletter-form input{
-  flex:1;
-  background:none;border:0;
-  padding:12px 20px;
-  color:var(--text);
-  font-family:inherit;
-  font-size:.9rem;
-  outline:none;
-}
-.newsletter-form input::placeholder{color:var(--text-muted)}
-.newsletter-form button{
-  background:var(--gold);
-  color:#1a2332;
-  padding:12px 24px;
-  border-radius:50px;
-  font-weight:800;
-  font-size:.85rem;
-  transition:var(--transition);
-}
-.newsletter-form button:hover{background:var(--gold-light)}
-
-/* ============ FOOTER ============ */
-.site-footer{
-  background:var(--bg-dark);
-  border-top:1px solid var(--border);
-  padding-top:60px;
-  position:relative;
-  overflow:hidden;
-}
-.footer-grid{
-  display:grid;
-  grid-template-columns:1.5fr 1fr 1fr 1fr;
-  gap:40px;
-  padding-bottom:50px;
-  position:relative;
-  z-index:1;
-}
-.footer-logo-text{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  font-size:1.7rem;
-  font-weight:900;
-  color:var(--text);
-  margin-bottom:16px;
-  letter-spacing:-.8px;
-}
-.footer-logo-text::before{content:'🔥';font-size:1.5rem}
-.footer-logo-text span{color:var(--gold)}
-
-.footer-col h4{
-  font-size:1rem;
-  margin-bottom:16px;
-  color:var(--gold);
-  font-weight:800;
-  position:relative;
-  padding-bottom:10px;
-}
-.footer-col h4::after{
-  content:'';
-  position:absolute;
-  bottom:0;right:0;
-  width:32px;height:3px;
-  background:var(--gold);
-  border-radius:3px;
-}
-.footer-col p{
-  font-size:.88rem;
-  color:var(--text-muted);
-  margin-bottom:10px;
-  display:flex;
-  align-items:flex-start;
-  gap:10px;
-  line-height:1.8;
-}
-.footer-col p i{color:var(--gold);margin-top:6px;flex-shrink:0}
-.footer-col ul li{margin-bottom:10px}
-.footer-col ul a{
-  font-size:.88rem;
-  color:var(--text-muted);
-  transition:var(--transition);
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-}
-.footer-col ul a::before{content:'←';color:var(--gold);opacity:0;transition:var(--transition)}
-.footer-col ul a:hover{color:var(--gold);padding-right:6px}
-.footer-col ul a:hover::before{opacity:1}
-
-.socials{display:flex;gap:10px;margin-top:18px}
-.socials a{
-  width:40px;height:40px;
-  border-radius:12px;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  display:grid;place-items:center;
-  transition:var(--transition);
-  color:var(--text-muted);
-}
-.socials a:hover{
-  background:var(--gold);
-  color:#1a2332;
-  border-color:var(--gold);
-  transform:translateY(-3px);
-  box-shadow:0 6px 16px rgba(236,193,74,.4);
-}
-
-.footer-bottom{
-  text-align:center;
-  padding:24px;
-  border-top:1px solid var(--border);
-  font-size:.82rem;
-  color:var(--text-muted);
-  position:relative;
-  z-index:1;
-}
-.footer-bottom strong{color:var(--gold)}
-
-/* ============ FLOATING CONTACT ============ */
-.floating-contact{
-  position:fixed;
-  bottom:32px;left:32px;
-  z-index:900;
-  display:flex;
-  flex-direction:column-reverse;
-  align-items:center;
-  gap:14px;
-}
-.floating-btn{
-  width:60px;height:60px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),var(--gold-light));
-  color:#1a2332;
-  font-size:1.5rem;
-  display:grid;place-items:center;
-  box-shadow:0 8px 28px var(--gold-glow);
-  transition:var(--transition);
-  animation:pulse-shadow 2s infinite;
-}
-.floating-btn:hover{transform:scale(1.1) rotate(-8deg)}
-.contact-links{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(10px);
-  transition:var(--transition);
-}
-.contact-links.active{opacity:1;visibility:visible;transform:translateY(0)}
-.contact-item{
-  width:52px;height:52px;
-  border-radius:50%;
-  display:grid;place-items:center;
-  color:#fff;
-  font-size:1.25rem;
-  box-shadow:0 6px 18px rgba(0,0,0,.3);
-  transition:var(--transition);
-}
-.contact-item:hover{transform:scale(1.12) translateX(-4px)}
-.contact-item.whatsapp{background:#25D366}
-.contact-item.phone{background:#3b82f6}
-.contact-item.waze{background:#33ccff}
-
-/* ============ SCROLL TOP ============ */
-.scroll-top{
-  position:fixed;
-  bottom:32px;right:32px;
-  width:50px;height:50px;
-  border-radius:50%;
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  color:var(--gold);
-  opacity:0;
-  visibility:hidden;
-  transition:var(--transition);
-  z-index:900;
-  display:grid;place-items:center;
-  font-size:1rem;
-}
-.scroll-top.visible{opacity:1;visibility:visible}
-.scroll-top:hover{
-  background:var(--gold);
-  color:#1a2332;
-  border-color:var(--gold);
-  transform:translateY(-4px);
-  box-shadow:0 6px 20px var(--gold-glow);
-}
-
-/* ============ REVEAL ============ */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-/* ============ RESPONSIVE ============ */
-@media(max-width:1100px){
-  .main-nav{display:none}
-  .menu-toggle{display:flex}
-  .footer-grid{grid-template-columns:1fr 1fr}
-}
-
-@media(max-width:900px){
-  .hero{height:80vh;min-height:560px}
-  .condenser-content h2{font-size:1.8rem}
-}
-
-@media(max-width:768px){
-  .section{padding:56px 0}
-  .section-title{font-size:1.5rem}
-  .section-title::before,.section-title::after{width:30px}
-  .header-inner{height:66px;gap:10px;padding:0 16px}
-  .logo-text{font-size:1.2rem}
-  .countdown{flex-wrap:wrap;justify-content:center}
-  .count-box{min-width:60px;padding:10px 12px}
-  .count-box span{font-size:1.2rem}
-  .product-card{min-width:210px;max-width:210px}
-  .floating-contact{bottom:20px;left:20px}
-  .scroll-top{bottom:20px;right:20px}
-  .floating-btn{width:52px;height:52px;font-size:1.3rem}
-  .newsletter-form{min-width:auto;width:100%}
-  .newsletter-inner{flex-direction:column;text-align:center}
-  .footer-grid{grid-template-columns:1fr;gap:28px}
-  .condenser-inner{padding:80px 20px}
-  .condenser-content h2{font-size:1.5rem}
-  .discount-header{padding:20px;flex-direction:column;align-items:flex-start}
-  .dual-banner{grid-template-columns:1fr}
-  .coupon-banner{text-align:center;justify-content:center}
-}
-
-@media(max-width:480px){
-  .cat-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .cat-info{padding:10px}
-  .cat-info h3{font-size:.85rem}
-  .cat-info span{font-size:.7rem}
-  .hero-cta{flex-direction:column;width:100%}
-  .hero-cta .btn-gold,.hero-cta .btn-outline{width:100%;justify-content:center}
-  .features-grid{grid-template-columns:1fr}
-  .product-card{min-width:175px;max-width:175px}
-  .stats-grid{grid-template-columns:1fr 1fr;gap:16px}
-  .stat-number{font-size:1.8rem}
-}
-/* ============ FIX LIGHT MODE IMAGES/ICONS ============ */
-[data-theme="light"] .cat-img {
-  /* معکوس کردن رنگ سفید به مشکی برای دیده شدن روی پس‌زمینه سفید */
-  filter: invert(1) brightness(0.2);
-  /* اگر رنگ آیکون‌ها سفید خالص است، invert(1) آن‌ها را مشکی می‌کند */
-}
-
-/* اگر در حالت روشن کارت‌ها پس‌زمینه‌ی سفید دارند، کمی خاکستری روشن کنیم تا آیکون‌ها بهتر دیده شوند */
-[data-theme="light"] .cat-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-} 
-[data-theme="light"] .cat-img {
-  filter: invert(60%) sepia(50%) saturate(600%) hue-rotate(360deg) brightness(90%) contrast(90%);
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="گرما پلاس ساری — فروشگاه لوکس گرمایش، سرمایش، آبرسانی و تجهیزات استخر. مازندران، ساری">
+  <meta name="theme-color" content="#05101a">
+  <title>گرما پلاس ساری — فروشگاه لوکس گرمایش، سرمایش و آبرسانی</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @font-face {
+      font-family: 'IRANYekanX';
+      src: url('https://garmlux.com/wp-content/uploads/2024/06/IRANYekanXVF.woff2') format('woff2-variations');
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
+    :root {
+      --bg-dark: #05101a;
+      --bg-darker: #030a12;
+      --bg-card: #0a1826;
+      --bg-elevated: #0f2233;
+      --gold: #ecc14a;
+      --gold-light: #f7d054;
+      --gold-deep: #b8860b;
+      --gold-glow: rgba(236,193,74,.35);
+      --text: #eef2f6;
+      --text-muted: #9aacbd;
+      --border: rgba(236,193,74,.14);
+      --border-soft: rgba(255,255,255,.07);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --transition: .35s cubic-bezier(.22,1,.36,1);
+      --shadow-lux: 0 20px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(236,193,74,.08);
+      --shadow-gold: 0 12px 40px rgba(236,193,74,.25);
+      --header-height: 82px;
+    }
+
+    body.light-theme {
+      --bg-dark: #f4f6f9;
+      --bg-darker: #eaeef3;
+      --bg-card: #ffffff;
+      --bg-elevated: #f8fafc;
+      --text: #0a1520;
+      --text-muted: #5a6b7e;
+      --border: rgba(184,134,11,.2);
+      --border-soft: rgba(0,0,0,.08);
+      --shadow-lux: 0 20px 60px rgba(0,0,0,.12), 0 0 0 1px rgba(184,134,11,.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IRANYekanX', 'Segoe UI', Tahoma, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.75;
+      overflow-x: hidden;
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+      transition: background .4s ease, color .4s ease;
+      padding-top: 3px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 85% -10%, rgba(236,193,74,.10), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 0% 100%, rgba(236,193,74,.06), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body.light-theme::before {
+      background:
+        radial-gradient(ellipse 80% 60% at 85% -10%, rgba(236,193,74,.15), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 0% 100%, rgba(236,193,74,.08), transparent 60%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+    /* ============ SCROLL PROGRESS BAR ============ */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-deep));
+      z-index: 10000;
+      transition: width .1s linear;
+      box-shadow: 0 0 10px var(--gold);
+    }
+
+    .container { max-width: 1260px; margin: 0 auto; padding: 0 22px; position: relative; z-index: 1; }
+
+    .section { padding: 78px 0; }
+    .section-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--text);
+      position: relative;
+      letter-spacing: -.3px;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 3px;
+      margin: 16px auto 0;
+      border-radius: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* ============ BUTTONS ============ */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold) 45%, var(--gold-deep));
+      color: #0a1520;
+      font-weight: 800;
+      font-size: .95rem;
+      padding: 14px 32px;
+      border-radius: 50px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(236,193,74,.25);
+      letter-spacing: -.2px;
+    }
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
+      transform: translateX(-120%);
+      transition: transform .7s ease;
+    }
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: var(--shadow-gold); }
+    .btn-gold:hover::before { transform: translateX(120%); }
+
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      color: var(--text);
+      transition: var(--transition);
+      position: relative;
+      border: 1px solid transparent;
+    }
+    .icon-btn:hover { background: rgba(236,193,74,.1); color: var(--gold); border-color: var(--border); }
+
+    /* ============ HEADER ============ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5,16,26,.55);
+      backdrop-filter: blur(22px) saturate(160%);
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+      border-bottom: 1px solid var(--border-soft);
+      transition: background .35s ease, box-shadow .35s ease;
+    }
+    body.light-theme .site-header { background: rgba(255,255,255,.65); }
+    .site-header.scrolled { background: rgba(5,16,26,.92); box-shadow: 0 10px 40px rgba(0,0,0,.5); border-bottom-color: var(--border); }
+    body.light-theme .site-header.scrolled { background: rgba(255,255,255,.95); box-shadow: 0 10px 40px rgba(0,0,0,.1); }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--header-height);
+      gap: 18px;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--text);
+      display: inline-block;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    body:not(.light-theme) .logo-text { color: #fff; }
+    .logo-text span { color: var(--gold); text-shadow: 0 0 24px var(--gold-glow); }
+
+    .main-nav ul { display: flex; list-style: none; gap: 6px; align-items: center; }
+    .main-nav > ul > li > a {
+      font-size: .92rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+    .main-nav > ul > li > a:hover,
+    .main-nav > ul > li:hover > a { color: var(--gold); background: rgba(236,193,74,.07); }
+    .main-nav i { font-size: .65rem; opacity: .6; transition: var(--transition); }
+    .main-nav li:hover > a i { transform: rotate(180deg); opacity: 1; }
+
+    .has-mega { position: relative; }
+    .mega-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background: var(--bg-card);
+      backdrop-filter: blur(28px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 22px;
+      min-width: 520px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: var(--transition);
+      box-shadow: var(--shadow-lux);
+    }
+    .has-mega:hover .mega-menu,
+    .has-mega:focus-within .mega-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .mega-col h4 {
+      color: var(--gold);
+      font-size: .88rem;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 800;
+    }
+    .mega-col a {
+      display: block;
+      padding: 7px 0;
+      font-size: .84rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+      border-radius: 6px;
+    }
+    .mega-col a:hover { color: var(--gold); padding-right: 6px; }
+
+    .header-actions { display: flex; gap: 6px; align-items: center; }
+    .cart-count {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0a1520;
+      font-size: .65rem;
+      font-weight: 800;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(236,193,74,.5);
+      transition: transform .2s;
+    }
+    .menu-toggle { display: none; }
+
+    /* ============ THEME TOGGLE ============ */
+    .theme-toggle .fa-sun { display: none; }
+    body.light-theme .theme-toggle .fa-sun { display: inline; }
+    body.light-theme .theme-toggle .fa-moon { display: none; }
+
+    /* ============ MOBILE DRAWER ============ */
+    .mobile-drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 1500;
+      visibility: hidden;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .mobile-drawer.open { visibility: visible; opacity: 1; }
+    .drawer-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(3,10,18,.75);
+      backdrop-filter: blur(6px);
+    }
+    .drawer-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(340px, 86vw);
+      background: var(--bg-darker);
+      border-left: 1px solid var(--border);
+      padding: 26px 22px;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform .4s cubic-bezier(.22,1,.36,1);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mobile-drawer.open .drawer-panel { transform: translateX(0); }
+    .drawer-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .drawer-panel a {
+      padding: 13px 14px;
+      border-radius: 12px;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .drawer-panel a:hover { background: rgba(236,193,74,.08); color: var(--gold); }
+
+    /* ============ CART DRAWER ============ */
+    .cart-drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 1600;
+      visibility: hidden;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .cart-drawer.open { visibility: visible; opacity: 1; }
+    .cart-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(3,10,18,.75);
+      backdrop-filter: blur(6px);
+    }
+    .cart-panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: min(420px, 92vw);
+      background: var(--bg-darker);
+      border-right: 1px solid var(--border);
+      padding: 26px 22px;
+      overflow-y: auto;
+      transform: translateX(-100%);
+      transition: transform .4s cubic-bezier(.22,1,.36,1);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .cart-drawer.open .cart-panel { transform: translateX(0); }
+    .cart-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cart-head h3 { color: var(--gold); font-size: 1.15rem; font-weight: 800; }
+    .cart-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+    .cart-empty i { font-size: 3rem; color: var(--gold); opacity: .4; margin-bottom: 20px; display: block; }
+    .cart-items { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      align-items: center;
+    }
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 10px;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-title {
+      font-size: .78rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .cart-item-price { font-size: .82rem; color: var(--gold); font-weight: 800; }
+    .cart-item-remove {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255,71,87,.1);
+      color: #ff4757;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .cart-item-remove:hover { background: #ff4757; color: #fff; }
+    .cart-footer {
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+    .cart-total span:last-child { color: var(--gold); font-size: 1.15rem; }
+    .cart-checkout {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0a1520;
+      font-weight: 800;
+      border-radius: 12px;
+      transition: var(--transition);
+    }
+    .cart-checkout:hover { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+
+    /* ============ SEARCH OVERLAY ============ */
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3,10,18,.94);
+      backdrop-filter: blur(28px);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      padding: 20px;
+    }
+    .search-overlay.active { opacity: 1; visibility: visible; }
+
+    .close-search {
+      position: absolute;
+      top: 26px;
+      left: 26px;
+      font-size: 1.8rem;
+      color: var(--text);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,.06);
+      transition: var(--transition);
+    }
+    body.light-theme .close-search { background: rgba(0,0,0,.06); }
+    .close-search:hover { background: var(--gold); color: #0a1520; transform: rotate(90deg); }
+
+    .search-form {
+      display: flex;
+      width: 100%;
+      max-width: 760px;
+      background: rgba(255,255,255,.05);
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lux);
+    }
+    body.light-theme .search-form { background: #fff; }
+    .search-form input {
+      flex: 1;
+      background: none;
+      border: 0;
+      padding: 20px 28px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1.05rem;
+      outline: none;
+    }
+    .search-form input::placeholder { color: var(--text-muted); }
+    .search-form button {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0a1520;
+      padding: 0 34px;
+      font-size: 1.25rem;
+      transition: var(--transition);
+    }
+    .search-form button:hover { filter: brightness(1.1); }
+    .search-hints {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 760px;
+      padding: 20px 20px 0;
+    }
+    .search-hint {
+      padding: 9px 18px;
+      border-radius: 50px;
+      background: rgba(236,193,74,.08);
+      border: 1px solid var(--border);
+      font-size: .82rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .search-hint:hover { background: var(--gold); color: #0a1520; }
+
+    .search-results {
+      width: 100%;
+      max-width: 760px;
+      margin-top: 24px;
+      max-height: 40vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .search-result-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      align-items: center;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .search-result-item:hover { border-color: var(--gold); transform: translateX(-4px); }
+    .search-result-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 10px;
+      padding: 6px;
+    }
+    .search-result-title { font-size: .85rem; font-weight: 600; flex: 1; }
+    .search-result-price { font-size: .85rem; color: var(--gold); font-weight: 800; }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 40px 0;
+    }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5,16,26,.55) 0%, rgba(5,16,26,.75) 50%, rgba(5,16,26,.97) 100%),
+        radial-gradient(ellipse at center, transparent 20%, rgba(5,16,26,.6) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      padding: 0 22px;
+      animation: fadeInUp 1s ease both;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      font-size: .85rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+      padding: 8px 20px;
+      background: rgba(236,193,74,.1);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+    }
+    .hero-badge .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(236,193,74,.6); }
+      50% { box-shadow: 0 0 0 8px rgba(236,193,74,0); }
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 5.5vw, 3.6rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      line-height: 1.25;
+      letter-spacing: -1px;
+      background: linear-gradient(180deg, #fff 30%, #cfd8e0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 40px rgba(0,0,0,.5);
+    }
+    .hero-title .accent {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      font-size: clamp(.95rem, 1.6vw, 1.1rem);
+      color: #b8c4d0;
+      margin-bottom: 38px;
+      max-width: 600px;
+      margin-inline: auto;
+    }
+    .hero-desc strong { color: var(--gold); font-weight: 800; }
+
+    .hero-search {
+      max-width: 620px;
+      margin: 0 auto 30px;
+      display: flex;
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(236,193,74,.25);
+      border-radius: 60px;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 16px 50px rgba(0,0,0,.45);
+      transition: var(--transition);
+    }
+    .hero-search:focus-within {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(236,193,74,.15), 0 16px 50px rgba(0,0,0,.45);
+    }
+    .hero-search input {
+      flex: 1;
+      background: none;
+      border: 0;
+      padding: 18px 26px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      min-width: 0;
+    }
+    .hero-search input::placeholder { color: #9aacbd; }
+    .hero-search button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0a1520;
+      padding: 0 30px;
+      font-weight: 800;
+      font-size: .95rem;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .hero-search button:hover { filter: brightness(1.08); }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat strong {
+      display: block;
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1.2;
+    }
+    .hero-stat span { font-size: .8rem; color: #9aacbd; }
+
+    /* ============ TABS ============ */
+    .tabs-nav {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .tab-btn {
+      padding: 13px 26px;
+      border-radius: 50px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255,255,255,.03);
+      color: var(--text-muted);
+      font-size: .92rem;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+    body.light-theme .tab-btn { background: #fff; }
+    .tab-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0a1520;
+      border-color: transparent;
+      box-shadow: 0 8px 24px rgba(236,193,74,.3);
+    }
+
+    .tab-panel { display: none; animation: fadeIn .45s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 18px;
+    }
+    .cat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+    }
+    .cat-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      transition: var(--transition);
+      pointer-events: none;
+    }
+    .cat-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+    .cat-card:hover::after { border-color: var(--gold); box-shadow: inset 0 0 30px rgba(236,193,74,.08); }
+    .cat-img {
+      aspect-ratio: 1;
+      background-size: cover;
+      background-position: center;
+      transition: transform .6s cubic-bezier(.22,1,.36,1);
+    }
+    .cat-card:hover .cat-img { transform: scale(1.1); }
+    .cat-info { padding: 16px 14px; text-align: center; }
+    .cat-info h3 { font-size: .95rem; margin-bottom: 6px; font-weight: 700; }
+    .cat-info span { font-size: .78rem; color: var(--gold); font-weight: 600; }
+
+    /* ============ BRANDS ============ */
+    .brands-section { background: var(--bg-darker); }
+    .brands {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 44px;
+    }
+    .brands img {
+      height: 44px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: .5;
+      transition: var(--transition);
+    }
+    body.light-theme .brands img { filter: brightness(0); opacity: .4; }
+    .brands img:hover { opacity: 1; filter: none; transform: scale(1.06); }
+
+    /* ============ DUAL BANNERS ============ */
+    .dual-banner { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .promo-banner {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid var(--border-soft);
+      position: relative;
+    }
+    .promo-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(5,16,26,.5));
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .promo-banner:hover { transform: translateY(-6px); box-shadow: var(--shadow-lux); border-color: var(--gold); }
+    .promo-banner:hover::after { opacity: 1; }
+
+    /* ============ DISCOUNT ============ */
+    .discount-section { background: var(--bg-darker); }
+    .discount-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 40px;
+      padding: 28px 32px;
+      background: linear-gradient(135deg, rgba(236,193,74,.08), rgba(236,193,74,.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .discount-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(236,193,74,.15), transparent 70%);
+      pointer-events: none;
+    }
+    .discount-info {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      position: relative;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .discount-badge {
+      width: 64px;
+      height: 64px;
+      min-width: 64px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0a1520;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-gold);
+      flex-shrink: 0;
+    }
+    .discount-info > div:last-child { min-width: 0; }
+    .discount-info h3 { font-size: 1.25rem; margin-bottom: 4px; font-weight: 800; line-height: 1.4     }
+    .discount-info p { font-size: .85rem; color: var(--text-muted); line-height: 1.6; }
+
+    .countdown {
+      display: flex;
+      gap: 8px;
+      position: relative;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .count-box {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      text-align: center;
+      min-width: 62px;
+      backdrop-filter: blur(10px);
+    }
+    body.light-theme .count-box { background: #fff; }
+    .count-box span {
+      display: block;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--gold);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.3;
+    }
+    .count-box label { font-size: .68rem; color: var(--text-muted); }
+
+    @media (max-width: 900px) {
+      .discount-header { flex-direction: column; align-items: stretch; padding: 22px 20px; gap: 18px; }
+      .discount-info { align-items: flex-start; }
+      .countdown { justify-content: center; }
+    }
+
+    @media (max-width: 520px) {
+      .discount-info { gap: 12px; }
+      .discount-badge { width: 52px; height: 52px; min-width: 52px; font-size: 1.2rem; border-radius: 16px; }
+      .discount-info h3 { font-size: 1.05rem; }
+      .discount-info p { font-size: .78rem; }
+      .count-box { min-width: 54px; padding: 8px 10px; }
+      .count-box span { font-size: 1.15rem; }
+    }
+
+    /* ============ PRODUCT CAROUSEL ============ */
+    .products-carousel {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .carousel-track {
+      flex: 1;
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 8px 4px;
+      scroll-snap-type: x mandatory;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+
+    .carousel-arrow {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .95rem;
+    }
+    .carousel-arrow:hover:not(:disabled) { background: var(--gold); color: #0a1520; border-color: var(--gold); transform: scale(1.06); }
+    .carousel-arrow:disabled { opacity: .3; cursor: not-allowed; }
+
+    .product-card {
+      min-width: 230px;
+      max-width: 230px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      scroll-snap-align: start;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+    .product-card:hover { border-color: var(--gold); box-shadow: 0 18px 40px rgba(0,0,0,.5); }
+    .product-img {
+      position: relative;
+      aspect-ratio: 1;
+      background: #fff;
+      overflow: hidden;
+    }
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 14px;
+      transition: transform .5s cubic-bezier(.22,1,.36,1);
+    }
+    .product-card:hover .product-img img { transform: scale(1.1); }
+    .sale-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: linear-gradient(135deg, #ff4757, #cf2e2e);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(207,46,46,.4);
+      z-index: 2;
+    }
+    .product-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .product-title {
+      font-size: .88rem;
+      font-weight: 600;
+      line-height: 1.6;
+      min-height: 2.8em;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .product-price { display: flex; flex-direction: column; gap: 4px; }
+    .old-price { font-size: .78rem; color: var(--text-muted); text-decoration: line-through; }
+    .new-price { font-size: 1.05rem; font-weight: 900; color: var(--gold); }
+    .add-to-cart {
+      margin-top: auto;
+      background: rgba(236,193,74,.1);
+      border: 1px solid rgba(236,193,74,.3);
+      color: var(--gold);
+      padding: 11px;
+      border-radius: 10px;
+      font-size: .85rem;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+    .add-to-cart:hover { background: var(--gold); color: #0a1520; }
+
+    /* ============ CONDENSER ============ */
+    .condenser-section {
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+    .condenser-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(5,16,26,.95) 0%, rgba(5,16,26,.7) 100%);
+    }
+    .condenser-inner { position: relative; padding: 110px 22px; text-align: right; }
+    .condenser-content h2 { font-size: clamp(1.5rem, 3.5vw, 2.2rem); margin-bottom: 10px; font-weight: 900; color: #fff; }
+    .condenser-content p { color: var(--gold); margin-bottom: 28px; font-size: 1rem; font-weight: 600; }
+
+    /* ============ TESTIMONIALS ============ */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+    }
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 34px 28px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+    }
+    .testimonial-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+    .testimonial-card > i { font-size: 2.2rem; color: var(--gold); margin-bottom: 18px; display: block; }
+    .testimonial-card h4 { margin-bottom: 6px; font-size: 1.05rem; }
+    .testimonial-card > p { color: var(--text-muted); font-size: .82rem; }
+    .testimonial-card .quote {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-soft);
+      color: var(--text);
+      font-size: .9rem;
+      line-height: 1.8;
+    }
+    .stars { color: var(--gold); font-size: .8rem; margin-top: 10px; letter-spacing: 2px; }
+
+    /* ============ BLOG ============ */
+    .blog-section { background: var(--bg-darker); }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+    }
+    .blog-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+    .blog-img-wrap { overflow: hidden; }
+    .blog-card img { aspect-ratio: 16/9; object-fit: cover; width: 100%; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+    .blog-card:hover img { transform: scale(1.07); }
+    .blog-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+    .blog-date {
+      font-size: .8rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+    .blog-date i { color: var(--gold); }
+    .blog-body h3 { font-size: 1rem; line-height: 1.7; margin-bottom: 18px; font-weight: 700; flex: 1; }
+    .read-more {
+      color: var(--gold);
+      font-size: .87rem;
+      font-weight: 700;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      align-self: flex-start;
+    }
+    .read-more:hover { gap: 12px; }
+
+    /* ============ FOOTER ============ */
+    .site-footer {
+      background: var(--bg-darker);
+      border-top: 1px solid var(--border);
+      padding-top: 60px;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+      padding-bottom: 46px;
+    }
+    .footer-logo-text {
+      display: inline-block;
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+    body:not(.light-theme) .footer-logo-text { color: #fff; }
+    .footer-logo-text span { color: var(--gold); text-shadow: 0 0 24px var(--gold-glow); }
+    .footer-col h3, .footer-col h4 {
+      margin-bottom: 18px;
+      color: var(--gold);
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+    .footer-col p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.7;
+    }
+    .footer-col p i { color: var(--gold); margin-top: 5px; flex-shrink: 0; }
+    .footer-col a:hover { color: var(--gold); }
+    .socials { display: flex; gap: 10px; margin-top: 18px; }
+    .socials a {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    body.light-theme .socials a { background: rgba(0,0,0,.03); }
+    .socials a:hover { background: var(--gold); color: #0a1520; transform: translateY(-3px); border-color: var(--gold); }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid var(--border-soft);
+      font-size: .85rem;
+      color: var(--text-muted);
+    }
+    .footer-bottom span { color: var(--gold); font-weight: 700; }
+
+    /* ============ FLOATING CONTACT ============ */
+    .floating-contact {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 900;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 14px;
+    }
+    .floating-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0a1520;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-gold);
+      transition: var(--transition);
+      animation: floatPulse 2.5s infinite;
+    }
+    @keyframes floatPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(236,193,74,.5), 0 12px 40px rgba(236,193,74,.25); }
+      50% { box-shadow: 0 0 0 15px rgba(236,193,74,0), 0 12px 40px rgba(236,193,74,.25); }
+    }
+    .floating-btn:hover { transform: scale(1.1); }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(14px);
+      transition: var(--transition);
+    }
+    .contact-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
+    .contact-item {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,.35);
+      transition: var(--transition);
+    }
+    .contact-item:hover { transform: scale(1.12); }
+    .contact-item.whatsapp { background: #25D366; }
+    .contact-item.phone { background: #3b82f6; }
+    .contact-item.waze { background: #33ccff; }
+
+    /* ============ SCROLL TOP ============ */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .scroll-top.visible { opacity: 1; visibility: visible; }
+    .scroll-top:hover { background: var(--gold); color: #0a1520; transform: translateY(-4px); }
+
+    /* ============ TOAST NOTIFICATION ============ */
+    .toast-container {
+      position: fixed;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      pointer-events: none;
+    }
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(236,193,74,.2);
+      color: var(--text);
+      font-weight: 700;
+      font-size: .9rem;
+      animation: toastIn .4s cubic-bezier(.22,1,.36,1) both;
+      pointer-events: auto;
+      backdrop-filter: blur(20px);
+      min-width: 280px;
+    }
+    .toast.removing { animation: toastOut .3s ease both; }
+    .toast i { font-size: 1.3rem; }
+    .toast.success { border-color: #25D366; }
+    .toast.success i { color: #25D366; }
+    .toast.info { border-color: var(--gold); }
+    .toast.info i { color: var(--gold); }
+    .toast.error { border-color: #ff4757; }
+    .toast.error i { color: #ff4757; }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(-20px) scale(.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes toastOut {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(-20px) scale(.9); }
+    }
+
+    /* ============ PROMO POPUP ============ */
+    .promo-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(3,10,18,.85);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      padding: 20px;
+    }
+    .promo-popup.active { opacity: 1; visibility: visible; }
+    .promo-content {
+      position: relative;
+      max-width: 480px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius-lg);
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 0 4px rgba(236,193,74,.1);
+      transform: scale(.85);
+      transition: var(--transition);
+    }
+    .promo-popup.active .promo-content { transform: scale(1); }
+    .promo-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .promo-close:hover { background: var(--gold); color: #0a1520; transform: rotate(90deg); }
+    .promo-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: giftBounce 2s infinite;
+    }
+    @keyframes giftBounce {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-8px) rotate(5deg); }
+    }
+    .promo-content h3 { font-size: 1.5rem; margin-bottom: 10px; font-weight: 900; }
+    .promo-content p { color: var(--text-muted); margin-bottom: 24px; font-size: .95rem; }
+    .promo-code {
+      display: inline-block;
+      padding: 12px 30px;
+      background: rgba(236,193,74,.1);
+      border: 2px dashed var(--gold);
+      border-radius: 12px;
+      color: var(--gold);
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .promo-code:hover { background: rgba(236,193,74,.2); transform: scale(1.03); }
+    .promo-cta {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0a1520;
+      font-weight: 800;
+      border-radius: 12px;
+      font-size: .95rem;
+      transition: var(--transition);
+    }
+    .promo-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+
+    /* ============ DISCOUNT FLOAT NOTIFICATION ============ */
+    .discount-float {
+      position: fixed;
+      bottom: 110px;
+      right: 30px;
+      z-index: 890;
+      background: var(--bg-card);
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      max-width: 300px;
+      transform: translateX(120%);
+      transition: transform .5s cubic-bezier(.22,1,.36,1);
+      cursor: pointer;
+    }
+    .discount-float.show { transform: translateX(0); }
+    .discount-float:hover { border-color: var(--gold-light); }
+    .discount-float-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: #fff;
+      padding: 5px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .discount-float-info { min-width: 0; }
+    .discount-float-title { font-size: .78rem; font-weight: 700; margin-bottom: 3px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .discount-float-price { font-size: .82rem; color: var(--gold); font-weight: 900; }
+    .discount-float-close {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      flex-shrink: 0;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1100px) {
+      .main-nav { display: none; }
+      .menu-toggle { display: flex; }
+      :root { --header-height: 68px; }
+      .dual-banner { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .section { padding: 56px 0; }
+    }
+
+    @media (max-width: 768px) {
+      .hero { min-height: 82vh; }
+      .hero-stats { gap: 26px; margin-top: 36px; }
+      .hero-stat strong { font-size: 1.35rem; }
+      .section-title { margin-bottom: 36px; }
+      .product-card { min-width: 190px; max-width: 190px; }
+      .carousel-arrow { display: none; }
+      .floating-contact { bottom: 18px; left: 18px; }
+      .scroll-top { bottom: 18px; right: 18px; }
+      .hero-search { flex-direction: column; border-radius: 20px; }
+      .hero-search input { padding: 16px 22px; }
+      .hero-search button { padding: 15px; justify-content: center; }
+      .toast-container { top: 80px; }
+      .discount-float { right: 18px; bottom: 90px; max-width: 260px; }
+    }
+
+    @media (max-width: 520px) {
+      .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .cat-info { padding: 12px 10px; }
+      .cat-info h3 { font-size: .82rem; }
+      .cat-info span { font-size: .7rem; }
+      .header-actions .icon-btn { width: 40px; height: 40px; }
+      .logo-text { font-size: 1.25rem; }
+      .section { padding: 44px 0; }
+      .footer-grid { gap: 30px; }
+      .promo-content { padding: 30px 22px; }
+      .promo-content h3 { font-size: 1.25rem; }
+      .promo-code { font-size: 1.1rem; padding: 10px 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
 
@@ -1758,229 +1499,212 @@ ul{list-style:none}
 <!-- ============ TOAST CONTAINER ============ -->
 <div class="toast-container" id="toastContainer"></div>
 
-<!-- ================= HEADER ================= -->
+<!-- ============ HEADER ============ -->
 <header class="site-header" id="siteHeader">
-  <div class="container">
-    <div class="header-glass">
-      <div class="header-inner">
-        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="منو"><i class="fa-solid fa-bars"></i></button>
+  <div class="container header-inner">
+    <button class="icon-btn menu-toggle" id="menuToggle" aria-label="باز کردن منو" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
-        <a href="#" class="logo">
-          <span class="logo-text">گرما <span>پلاس</span></span>
-        </a>
+    <a href="#" class="logo" aria-label="گرما پلاس ساری">
+      <span class="logo-text">گرما <span>پلاس</span></span>
+    </a>
 
-        <nav class="main-nav">
-          <ul>
-            <li><a href="#">خانه</a></li>
+    <nav class="main-nav" aria-label="ناوبری اصلی">
+      <ul>
+        <li><a href="#">خانه</a></li>
+        <li class="has-mega">
+          <a href="#">سیستم گرمایشی <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h4>پکیج گرمایشی</h4>
+              <a href="#">پکیج ایران رادیاتور</a>
+              <a href="#">پکیج بوتان</a>
+              <a href="#">پکیج شوفاژکار</a>
+            </div>
+            <div class="mega-col">
+              <h4>رادیاتور</h4>
+              <a href="#">رادیاتور بوتان</a>
+              <a href="#">رادیاتور ایران رادیاتور</a>
+              <a href="#">رادیاتور پنلی</a>
+            </div>
+            <div class="mega-col">
+              <h4>آبگرمکن</h4>
+              <a href="#">آبگرمکن بوتان</a>
+              <a href="#">آبگرمکن آزمایش</a>
+            </div>
+          </div>
+        </li>
+        <li class="has-mega">
+          <a href="#">آبرسانی <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h4>پمپ آب</h4>
+              <a href="#">پمپ آب الکتروژن</a>
+              <a href="#">پمپ آب ابارا</a>
+              <a href="#">پمپ آب پنتاکس</a>
+            </div>
+            <div class="mega-col">
+              <h4>پمپ سییرکولاتور</h4>
+              <a href="#">پمپ LEO</a>
+              <a href="#">پمپ آرس</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#">استخر و جکوزی</a></li>
+        <li><a href="#">تهویه مطبوع</a></li>
+        <li><a href="#">لوازم کنترلی</a></li>
+        <li><a href="#contact">تماس با ما</a></li>
+      </ul>
+    </nav>
 
-            <!-- ✅ مگا منو ۱: سیستم گرمایشی -->
-            <li class="has-mega">
-              <a href="#">سیستم گرمایشی <i class="fa-solid fa-chevron-down"></i></a>
-              <div class="mega-menu">
-                <div class="mega-col">
-                  <h4><i class="fa-solid fa-fire-flame-curved"></i> پکیج گرمایشی</h4>
-                  <a href="#">پکیج ایران رادیاتور</a>
-                  <a href="#">پکیج بوتان</a>
-                  <a href="#">پکیج شوفاژکار</a>
-                  <a href="#">پکیج لورچ</a>
-                </div>
-                <div class="mega-col">
-                  <h4><i class="fa-solid fa-temperature-half"></i> رادیاتور</h4>
-                  <a href="#">رادیاتور بوتان</a>
-                  <a href="#">رادیاتور ایران رادیاتور</a>
-                  <a href="#">رادیاتور پنلی</a>
-                  <a href="#">رادیاتور آلومینیومی</a>
-                </div>
-                <div class="mega-col">
-                  <h4><i class="fa-solid fa-shower"></i> آبگرمکن</h4>
-                  <a href="#">آبگرمکن بوتان</a>
-                  <a href="#">آبگرمکن آزمایش</a>
-                  <a href="#">آبگرمکن دیواری</a>
-                </div>
-              </div>
-            </li>
-
-            <!-- ✅ مگا منو ۲: آبرسانی -->
-            <li class="has-mega">
-              <a href="#">آبرسانی <i class="fa-solid fa-chevron-down"></i></a>
-              <div class="mega-menu">
-                <div class="mega-col">
-                  <h4><i class="fa-solid fa-water"></i> پمپ آب</h4>
-                  <a href="#">پمپ آب الکتروژن</a>
-                  <a href="#">پمپ آب ابارا</a>
-                  <a href="#">پمپ آب پنتاکس</a>
-                  <a href="#">پمپ آب لئو</a>
-                </div>
-                <div class="mega-col">
-                  <h4><i class="fa-solid fa-sync"></i> پمپ سیرکولاتور</h4>
-                  <a href="#">پمپ LEO</a>
-                  <a href="#">پمپ آرس</a>
-                  <a href="#">پمپ پنتاکس</a>
-                </div>
-              </div>
-            </li>
-
-            <!-- لینک ساده -->
-            <li><a href="#">استخر و جکوزی</a></li>
-            <li><a href="#">تهویه مطبوع</a></li>
-            <li><a href="#">لوازم کنترلی</a></li>
-            <li><a href="#">تماس با ما</a></li>
-          </ul>
-        </nav>
-
-        <div class="header-actions">
-          <button class="icon-btn" id="searchToggle" aria-label="جستجو"><i class="fa-solid fa-magnifying-glass"></i></button>
-          <button class="icon-btn theme-toggle" id="themeToggle" aria-label="تم">
-            <i class="fa-solid fa-moon"></i>
-            <i class="fa-solid fa-sun"></i>
-          </button>
-          <button class="icon-btn" id="cartToggle" aria-label="سبد خرید">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span class="cart-count" id="cartCount">0</span>
-          </button>
-          <button class="icon-btn" aria-label="حساب کاربری"><i class="fa-regular fa-user"></i></button>
-        </div>
-      </div>
+    <div class="header-actions">
+      <button class="icon-btn theme-toggle" id="themeToggle" aria-label="تغییر تم">
+        <i class="fa-solid fa-moon"></i>
+        <i class="fa-solid fa-sun"></i>
+      </button>
+      <button style="display: none;" class="icon-btn" id="searchToggleBtn" aria-label="جستجو">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="icon-btn cart-btn" id="cartToggle" aria-label="سبد خرید">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count">0</span>
+      </button>
+      <button class="icon-btn" aria-label="حساب کاربری">
+        <i class="fa-regular fa-user"></i>
+      </button>
     </div>
   </div>
 </header>
 
-<!-- ================= MOBILE DRAWER ================= -->
-<div class="drawer-overlay" id="drawerOverlay"></div>
-<aside class="mobile-drawer" id="mobileDrawer">
-  <div class="drawer-header">
-    <span class="logo-text">گرما <span>پلاس</span></span>
-    <button class="icon-btn" id="drawerClose"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-  <nav class="drawer-nav">
-    <ul>
-      <li><a href="#">خانه</a></li>
-      <li>
-        <button type="button">سیستم گرمایشی <i class="fa-solid fa-chevron-down arrow"></i></button>
-        <div class="drawer-submenu">
-          <a href="#">پکیج ایران رادیاتور</a>
-          <a href="#">پکیج بوتان</a>
-          <a href="#">رادیاتور بوتان</a>
-          <a href="#">رادیاتور ایران رادیاتور</a>
-          <a href="#">آبگرمکن</a>
-        </div>
-      </li>
-      <li>
-        <button type="button">آبرسانی <i class="fa-solid fa-chevron-down arrow"></i></button>
-        <div class="drawer-submenu">
-          <a href="#">پمپ آب</a>
-          <a href="#">پمپ سیرکولاتور</a>
-        </div>
-      </li>
-      <li><a href="#">استخر و جکوزی</a></li>
-      <li><a href="#">تهویه مطبوع</a></li>
-      <li><a href="#">لوازم کنترلی</a></li>
-      <li><a href="#">تماس با ما</a></li>
-    </ul>
-  </nav>
-</aside>
-
-<!-- ================= SEARCH OVERLAY ================= -->
-<div class="search-overlay" id="searchOverlay">
-  <button class="close-search" id="closeSearch">&times;</button>
-  <div class="search-wrap">
-    <form class="search-form">
-      <input type="text" id="searchInput" placeholder="جستجوی محصولات..." autofocus>
-      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-    <div class="search-suggestions" id="searchSuggestions">
-      <div class="suggestion-item"><i class="fa-solid fa-fire"></i><span class="suggestion-text">پکیج ایران رادیاتور</span><span class="suggestion-cat">گرمایشی</span></div>
-      <div class="suggestion-item"><i class="fa-solid fa-fire"></i><span class="suggestion-text">پکیج بوتان</span><span class="suggestion-cat">گرمایشی</span></div>
-      <div class="suggestion-item"><i class="fa-solid fa-temperature-half"></i><span class="suggestion-text">رادیاتور پنلی</span><span class="suggestion-cat">گرمایشی</span></div>
-      <div class="suggestion-item"><i class="fa-solid fa-snowflake"></i><span class="suggestion-text">کولر گازی اسپلیت</span><span class="suggestion-cat">تهویه</span></div>
-      <div class="suggestion-item"><i class="fa-solid fa-water"></i><span class="suggestion-text">پمپ آب الکتروژن</span><span class="suggestion-cat">آبرسانی</span></div>
+<!-- ============ MOBILE DRAWER ============ -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer-panel" aria-label="منوی موبایل">
+    <div class="drawer-head">
+      <span class="logo-text">گرما <span>پلاس</span></span>
+      <button class="icon-btn" id="drawerClose" aria-label="بستن منو">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
+    <a href="#">خانه</a>
+    <a href="#">سیستم گرمایشی</a>
+    <a href="#">آبرسانی</a>
+    <a href="#">استخر و جکوزی</a>
+    <a href="#">تهویه مطبوع</a>
+    <a href="#">لوازم کنترلی</a>
+    <a href="#contact">تماس با ما</a>
+  </aside>
+</div>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-panel" aria-label="سبد خرید">
+    <div class="cart-head">
+      <h3><i class="fa-solid fa-cart-shopping"></i> سبد خرید</h3>
+      <button class="icon-btn" id="cartClose" aria-label="بستن سبد">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <i class="fa-regular fa-cart-shopping"></i>
+        <p>سبد خرید شما خالی است</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display: none;">
+      <div class="cart-total">
+        <span>مجموع:</span>
+        <span id="cartTotalPrice">۰ تومان</span>
+      </div>
+      <button class="cart-checkout" id="cartCheckout">
+        <i class="fa-solid fa-check-circle"></i>
+        تکمیل خرید
+      </button>
+    </div>
+  </aside>
+</div>
+
+<!-- ============ SEARCH OVERLAY ============ -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="جستجوی محصولات">
+  <button class="close-search" id="closeSearch" aria-label="بستن جستجو">&times;</button>
+  <form class="search-form" onsubmit="return false;">
+    <input type="search" placeholder="جستجوی محصولات..." id="searchInput" autocomplete="off">
+    <button type="submit" aria-label="جستجو"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+  <div class="search-hints" id="searchHints">
+    <a href="#" class="search-hint">پکیج بوتان</a>
+    <a href="#" class="search-hint">رادیاتور پنلی</a>
+    <a href="#" class="search-hint">پمپ آب</a>
+    <a href="#" class="search-hint">فیلتر شنی</a>
+  </div>
+  <div class="search-results" id="searchResults"></div>
+</div>
+
+<!-- ============ PROMO POPUP ============ -->
+<div class="promo-popup" id="promoPopup">
+  <div class="promo-content">
+    <button class="promo-close" id="promoClose" aria-label="بستن">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="promo-icon"><i class="fa-solid fa-gift"></i></div>
+    <h3>تخفیف ویژه افتتاحیه!</h3>
+    <p>به مناسبت افتتاح شعبه ساری، ۱۵٪ تخفیف روی اولین خرید شما</p>
+    <div class="promo-code" id="promoCode">GARMLUX15</div>
+    <button class="promo-cta" id="promoCta">کپی کد و خرید</button>
   </div>
 </div>
 
-<!-- ================= CART DRAWER ================= -->
-<aside class="cart-drawer" id="cartDrawer">
-  <div class="cart-header">
-    <h3><i class="fa-solid fa-cart-shopping"></i> سبد خرید</h3>
-    <button class="icon-btn" id="cartClose"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-  <div class="cart-body" id="cartBody">
-    <div class="cart-empty" id="cartEmpty">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <p>سبد خرید شما خالی است</p>
-      <a href="#discount" class="btn-gold">مشاهده محصولات</a>
-    </div>
-  </div>
-  <div class="cart-footer" id="cartFooter" style="display:none">
-    <div class="cart-total">
-      <span>مجموع:</span>
-      <span class="cart-total-price" id="cartTotal">۰ تومان</span>
-    </div>
-    <button class="cart-checkout">
-      <i class="fa-solid fa-lock"></i> نهایی‌سازی خرید
-    </button>
-  </div>
-</aside>
-
-<!-- ================= HERO ================= -->
+<!-- ============ HERO ============ -->
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
+  <video class="hero-video" autoplay muted loop playsinline poster="https://garmlux.com/wp-content/uploads/2025/07/frame_776.webp">
     <source src="https://garmlux.com/wp-content/uploads/2025/07/Home-–-04-–-Airz.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-subtitle">کولر گازی TCL TAC-24CHSA/TPH11I</span>
-    <h1 class="hero-title">انواع کولر گازی‌های TCL</h1>
+    <span class="hero-badge">
+      <span class="pulse-dot"></span>
+      فروشگاه تخصصی گرما پلاس — مازندران، ساری
+    </span>
+    <h1 class="hero-title">
+      تجربه‌ای <span class="accent">لوکس</span> از خرید<br>گرمایش، سرمایش و آبرسانی
+    </h1>
     <p class="hero-desc">
-      مجهز به فناوری حالت باد ملایم، سرمایش بدون وزش باد مستقیم
-      <strong>Gentle Breeze</strong>
+      مجهز به فناوری <strong>Gentle Breeze</strong> — سرمایش بدون وزش باد مستقیم،
+      با ضمانت اصالت کالا و ارسال سریع به سراسر کشور
     </p>
-    <div class="hero-cta">
-      <a href="#discount" class="btn-gold"><i class="fa-solid fa-bag-shopping"></i> مشاهده محصولات</a>
-      <a href="tel:02191693658" class="btn-outline"><i class="fa-solid fa-phone"></i> مشاوره رایگان</a>
-    </div>
-  </div>
-  <div class="hero-scroll">
-    <span>اسکرول کنید</span>
-    <i class="fa-solid fa-chevron-down"></i>
-  </div>
-</section>
 
-<!-- ============ FEATURE STRIP ============ -->
-<section class="feature-strip">
-  <div class="container features-grid">
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
-      <div class="feature-text"><h4>ارسال سریع</h4><p>به سراسر ایران</p></div>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-      <div class="feature-text"><h4>گارانتی اصالت</h4><p>تضمین کالای اصل</p></div>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-      <div class="feature-text"><h4>نصب و راه‌اندازی</h4><p>توسط تکنسین مجرب</p></div>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fa-solid fa-credit-card"></i></div>
-      <div class="feature-text"><h4>پرداخت امن</h4><p>درگاه معتبر بانکی</p></div>
+    <form class="hero-search" onsubmit="return false;" role="search">
+      <input type="search" placeholder="چه محصولی می‌خواهید؟ مثلاً پکیج بوتان..." aria-label="جستجوی محصول">
+      <button type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        جستجو
+      </button>
+    </form>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>+20,000</strong><span>مشتری راضی</span></div>
+      <div class="hero-stat"><strong>+5,000</strong><span>محصول متنوع</span></div>
+      <div class="hero-stat"><strong>24/7</strong><span>پشتیبانی</span></div>
     </div>
   </div>
 </section>
 
-<!-- ================= CATEGORY TABS ================= -->
-<section class="section categories-section">
+<!-- ============ CATEGORIES ============ -->
+<section class="section categories-section" id="categories">
   <div class="container">
-    <div class="tabs-nav reveal" id="tabsNav">
-      <button class="tab-btn active" data-tab="heating">سیستم گرمایشی</button>
-      <button class="tab-btn" data-tab="water">سیستم آبرسانی</button>
-      <button class="tab-btn" data-tab="pool">استخر و جکوزی</button>
-      <button class="tab-btn" data-tab="hvac">تهویه مطبوع</button>
-      <button class="tab-btn" data-tab="control">لوازم کنترلی</button>
+    <h2 class="section-title">دسته‌بندی محصولات</h2>
+    <div class="tabs-nav" id="tabsNav" role="tablist">
+      <button class="tab-btn active" data-tab="heating" role="tab" aria-selected="true">سیستم گرمایشی</button>
+      <button class="tab-btn" data-tab="water" role="tab" aria-selected="false">سیستم آبرسانی</button>
+      <button class="tab-btn" data-tab="pool" role="tab" aria-selected="false">استخر و جکوزی</button>
+      <button class="tab-btn" data-tab="hvac" role="tab" aria-selected="false">تهویه مطبوع</button>
+      <button class="tab-btn" data-tab="control" role="tab" aria-selected="false">لوازم کنترلی</button>
     </div>
 
     <div class="tabs-content">
-      <div class="tab-panel active" id="tab-heating">
+      <div class="tab-panel active" id="tab-heating" role="tabpanel">
         <div class="cat-grid">
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-04_40_09-PM-Small.png')"></div><div class="cat-info"><h3>یونیت هیتر</h3><span>66 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-19-2025-05_32_57-PM-Small.png')"></div><div class="cat-info"><h3>هیتر و بخاری</h3><span>203 محصول</span></div></a>
@@ -1993,12 +1717,12 @@ ul{list-style:none}
         </div>
       </div>
 
-      <div class="tab-panel" id="tab-water">
+      <div class="tab-panel" id="tab-water" role="tabpanel">
         <div class="cat-grid">
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-20-2025-05_38_07-PM-Small.png')"></div><div class="cat-info"><h3>منبع آب</h3><span>1441 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-20-2025-05_44_32-PM-Small.png')"></div><div class="cat-info"><h3>پمپ کف کش</h3><span>70 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-20-2025-05_54_02-PM-Small.png')"></div><div class="cat-info"><h3>پمپ شناور</h3><span>6 محصول</span></div></a>
-          <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-20-2025-05_59_38-PM-Small.png')"></div><div class="cat-info"><h3>پمپ سیرکولاتور</h3><span>523 محصول</span></div></a>
+          <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-20-2025-05_59_38-PM-Small.png')"></div><div class="cat-info"><h3>پمپ سییرکولاتور</h3><span>523 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-20-2025-06_09_03-PM-Small.png')"></div><div class="cat-info"><h3>پمپ درین</h3><span>39 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-20-2025-06_25_21-PM-Small.png')"></div><div class="cat-info"><h3>پمپ آب</h3><span>1209 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-31-2025-03_25_14-PM-Small.png')"></div><div class="cat-info"><h3>بوستر پمپ</h3><span>89 محصول</span></div></a>
@@ -2006,7 +1730,7 @@ ul{list-style:none}
         </div>
       </div>
 
-      <div class="tab-panel" id="tab-pool">
+      <div class="tab-panel" id="tab-pool" role="tabpanel">
         <div class="cat-grid">
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-4-2025-01_39_37-PM-Small.png')"></div><div class="cat-info"><h3>لوله و اتصالات</h3><span>49 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/08/ChatGPT-Image-Aug-31-2025-04_35_57-PM-Small.png')"></div><div class="cat-info"><h3>فیلتر تصفیه</h3><span>325 محصول</span></div></a>
@@ -2017,7 +1741,7 @@ ul{list-style:none}
         </div>
       </div>
 
-      <div class="tab-panel" id="tab-hvac">
+      <div class="tab-panel" id="tab-hvac" role="tabpanel">
         <div class="cat-grid">
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-6-2025-06_00_15-PM-Small.png')"></div><div class="cat-info"><h3>گاز مبرد</h3><span>14 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-6-2025-06_11_45-PM-Small.png')"></div><div class="cat-info"><h3>کولر آبی</h3><span>146 محصول</span></div></a>
@@ -2028,53 +1752,49 @@ ul{list-style:none}
         </div>
       </div>
 
-      <div class="tab-panel" id="tab-control">
+      <div class="tab-panel" id="tab-control" role="tabpanel">
         <div class="cat-grid">
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-7-2025-05_22_20-PM-Small.png')"></div><div class="cat-info"><h3>شکوه الکترونیک</h3><span>57 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-7-2025-05_29_59-PM-Small.png')"></div><div class="cat-info"><h3>چوال ایتالیا</h3><span>7 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-7-2025-05_35_27-PM-Small.png')"></div><div class="cat-info"><h3>شیر برقی UNID</h3><span>14 محصول</span></div></a>
           <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-7-2025-05_40_26-PM-Small.png')"></div><div class="cat-info"><h3>ترموستات</h3><span>6 محصول</span></div></a>
-          <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-7-2025-05_49_58-PM-Small.png')"></div><div class="cat-info"><h3>ترموستات تک‌بان</h3><span>26 محصول</span></div></a>
+          <a href="#" class="cat-card"><div class="cat-img" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/09/ChatGPT-Image-Sep-7-2025-05_49_58-PM-Small.png')"></div><div class="cat-info"><h3>ترموستات تکبان</h3><span>26 محصول</span></div></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= BRANDS ================= -->
+<!-- ============ BRANDS ============ -->
 <section class="section brands-section">
   <div class="container">
-    <h2 class="section-title reveal">پرفروش‌ترین برندها</h2>
-  </div>
-  <div class="brands-track">
-    <img src="https://garmlux.com/wp-content/uploads/2025/07/image_37.webp" alt="برند">
-    <img src="https://garmlux.com/wp-content/uploads/2025/07/group_28.webp" alt="برند">
-    <img src="https://garmlux.com/wp-content/uploads/2025/07/image_40-1.webp" alt="برند">
-    <img src="https://garmlux.com/wp-content/uploads/2025/07/image_38.webp" alt="برند">
-    <img src="https://garmlux.com/wp-content/uploads/2025/07/image_37.webp" alt="برند">
-    <img src="https://garmlux.com/wp-content/uploads/2025/07/group_28.webp" alt="برند">
-    <img src="https://garmlux.com/wp-content/uploads/2025/07/image_40-1.webp" alt="برند">
-    <img src="https://garmlux.com/wp-content/uploads/2025/07/image_38.webp" alt="برند">
+    <h2 class="section-title">پرفروش‌ترین برندها</h2>
+    <div class="brands">
+      <img src="https://garmlux.com/wp-content/uploads/2025/07/image_37.webp" alt="برند" loading="lazy">
+      <img src="https://garmlux.com/wp-content/uploads/2025/07/group_28.webp" alt="برند" loading="lazy">
+      <img src="https://garmlux.com/wp-content/uploads/2025/07/image_40-1.webp" alt="برند" loading="lazy">
+      <img src="https://garmlux.com/wp-content/uploads/2025/07/image_38.webp" alt="برند" loading="lazy">
+    </div>
   </div>
 </section>
 
-<!-- ================= DUAL BANNERS ================= -->
+<!-- ============ DUAL BANNERS ============ -->
 <section class="section banners-section">
-  <div class="container dual-banner reveal">
-    <a href="#" class="promo-banner"><img src="https://garmlux.com/wp-content/uploads/2025/07/frame_748.webp" alt="اسپلیت TCL"></a>
-    <a href="#" class="promo-banner"><img src="https://garmlux.com/wp-content/uploads/2025/07/frame_747.webp" alt="کولر آبی"></a>
+  <div class="container dual-banner">
+    <a href="#" class="promo-banner"><img src="https://garmlux.com/wp-content/uploads/2025/07/frame_748.webp" alt="اسپلیت TCL" loading="lazy"></a>
+    <a href="#" class="promo-banner"><img src="https://garmlux.com/wp-content/uploads/2025/07/frame_747.webp" alt="کولر آبی" loading="lazy"></a>
   </div>
 </section>
 
-<!-- ================= DISCOUNT CAROUSEL ================= -->
-<section class="section discount-section" id="discount">
+<!-- ============ DISCOUNT ============ -->
+<section class="section discount-section">
   <div class="container">
-    <div class="discount-header reveal">
+    <div class="discount-header">
       <div class="discount-info">
         <div class="discount-badge"><i class="fa-solid fa-percent"></i></div>
         <div>
           <h3>پر تخفیف‌ترین محصولات</h3>
-          <p>تا 30% تخفیف ویژه به مناسبت افتتاحیه سایت</p>
+          <p>تا ۳۰٪ تخفیف ویژه به مناسبت افتتاحیه شعبه ساری</p>
         </div>
       </div>
       <div class="countdown" id="countdown">
@@ -2085,152 +1805,53 @@ ul{list-style:none}
       </div>
     </div>
 
-    <div class="products-carousel reveal">
-      <button class="carousel-arrow prev"><i class="fa-solid fa-chevron-right"></i></button>
+    <div class="products-carousel">
+      <button class="carousel-arrow prev" aria-label="قبلی"><i class="fa-solid fa-chevron-right"></i></button>
       <div class="carousel-track" id="discountTrack"></div>
-      <button class="carousel-arrow next"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="carousel-arrow next" aria-label="بعدی"><i class="fa-solid fa-chevron-left"></i></button>
     </div>
   </div>
 </section>
 
-<!-- ================= COUPON ================= -->
-<section class="section" style="padding-top:0">
-  <div class="container">
-    <div class="coupon-banner reveal">
-      <div class="coupon-text">
-        <h3><i class="fa-solid fa-gift"></i> کد تخفیف ویژه مشتریان جدید</h3>
-        <p>با کپی کردن کد زیر، ۱۵٪ تخفیف روی اولین خریدت بگیر</p>
-      </div>
-      <div class="coupon-code" id="couponCode" title="برای کپی کلیک کنید">
-        <span>GARMAPLUS15</span>
-        <i class="fa-solid fa-copy"></i>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= STATS ================= -->
-<section class="stats-section">
-  <div class="container stats-grid">
-    <div class="stat-item reveal">
-      <i class="fa-solid fa-box stat-icon"></i>
-      <div class="stat-number"><span data-count="15000">0</span>+</div>
-      <div class="stat-label">محصول متنوع</div>
-    </div>
-    <div class="stat-item reveal">
-      <i class="fa-solid fa-users stat-icon"></i>
-      <div class="stat-number"><span data-count="20000">0</span>+</div>
-      <div class="stat-label">مشتری راضی</div>
-    </div>
-    <div class="stat-item reveal">
-      <i class="fa-solid fa-truck stat-icon"></i>
-      <div class="stat-number"><span data-count="50000">0</span>+</div>
-      <div class="stat-label">سفارش موفق</div>
-    </div>
-    <div class="stat-item reveal">
-      <i class="fa-solid fa-award stat-icon"></i>
-      <div class="stat-number"><span data-count="15">0</span>+</div>
-      <div class="stat-label">سال تجربه</div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= WHY US ================= -->
-<section class="section why-us-section">
-  <div class="container">
-    <h2 class="section-title reveal">چرا گرما پلاس؟</h2>
-    <div class="why-grid">
-      <div class="why-card reveal">
-        <div class="why-icon"><i class="fa-solid fa-certificate"></i></div>
-        <h3>نمایندگی رسمی</h3>
-        <p>نماینده رسمی برندهای ایران رادیاتور، بوتان و سایر برندهای معتبر داخلی و خارجی.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-icon"><i class="fa-solid fa-headset"></i></div>
-        <h3>پشتیبانی ۲۴/۷</h3>
-        <p>تیم پشتیبانی متخصص آماده پاسخگویی به سوالات فنی و راهنمایی خرید شماست.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-icon"><i class="fa-solid fa-medal"></i></div>
-        <h3>ضمانت بهترین قیمت</h3>
-        <p>با حذف واسطه‌ها، بهترین قیمت بازار را با گارانتی اصالت به شما ارائه می‌دهیم.</p>
-      </div>
-      <div class="why-card reveal">
-        <div class="why-icon"><i class="fa-solid fa-rotate-left"></i></div>
-        <h3>بازگشت آسان</h3>
-        <p>تا ۷ روز پس از خرید، بدون قید و شرط می‌توانید کالا را بازگردانید.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CONDENSER ================= -->
+<!-- ============ CONDENSER ============ -->
 <section class="section condenser-section" style="background-image:url('https://garmlux.com/wp-content/uploads/2025/07/frame_776.webp')">
   <div class="container condenser-inner">
-    <div class="condenser-content reveal">
+    <div class="condenser-content">
       <h2>انواع کندانسور کولر گازی</h2>
-      <p>CONDENSING UNIT</p>
-      <a href="#" class="btn-gold"><i class="fa-solid fa-arrow-left"></i> مشاهده محصولات</a>
+      <p>Condensing Unit</p>
+      <a href="#" class="btn-gold">
+        <i class="fa-solid fa-headset"></i>
+        مشاهده  محصول 
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ================= TESTIMONIALS ================= -->
-<section class="section testimonials-section">
-  <div class="container">
-    <h2 class="section-title reveal">بیش از 20,000 نفر اعتماد کرده‌اند</h2>
-    <div class="testimonials">
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-        </div>
-        <h4>شاهین اکبری</h4>
-        <p>بیش از 200 میلیون خرید</p>
-        <p class="quote">یکی از بهترین تجربه‌های خرید اینترنتی بود. محصول سالم و پشتیبانی عالی.</p>
-      </div>
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-        </div>
-        <h4>الناز شاکری</h4>
-        <p>بیش از 400 میلیون خرید</p>
-        <p class="quote">ارسال سریع و بسته‌بندی حرفه‌ای. قیمت‌ها هم منصفانه بود.</p>
-      </div>
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-        </div>
-        <h4>مهران باقرزاده</h4>
-        <p>بیش از 900 میلیون خرید</p>
-        <p class="quote">تنوع محصولات فوق‌العاده‌ست و مشاوره قبل از خرید خیلی کمک کرد.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ============ TESTIMONIALS ============ -->
 
-<!-- ================= BLOG ================= -->
+<!-- ============ BLOG ============ -->
 <section class="section blog-section">
   <div class="container">
-    <h2 class="section-title reveal">مقالات خواندنی</h2>
+    <h2 class="section-title">مقالات خواندنی</h2>
     <div class="blog-grid">
-      <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="https://garmlux.com/wp-content/uploads/2026/02/پکیج-دیواری-بهتر-است-یا-موتورخانه-1024x576.jpg" alt=""></div>
+      <article class="blog-card">
+        <div class="blog-img-wrap"><img src="https://garmlux.com/wp-content/uploads/2026/02/پکیج-دیواری-بهتر-است-یا-موتورخانه-1024x576.jpg" alt="پکیج دیواری بهتر است یا موتورخانه" loading="lazy"></div>
         <div class="blog-body">
           <span class="blog-date"><i class="fa-regular fa-clock"></i> ۵ اسفند ۱۴۰۵</span>
           <h3>پکیج دیواری بهتر است یا موتورخانه؟</h3>
           <a href="#" class="read-more">ادامه مطلب <i class="fa-solid fa-arrow-left"></i></a>
         </div>
       </article>
-      <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="https://garmlux.com/wp-content/uploads/2026/02/Engine-room-boiler-1024x576.jpg" alt=""></div>
+      <article class="blog-card">
+        <div class="blog-img-wrap"><img src="https://garmlux.com/wp-content/uploads/2026/02/Engine-room-boiler-1024x576.jpg" alt="دیگ موتورخانه" loading="lazy"></div>
         <div class="blog-body">
           <span class="blog-date"><i class="fa-regular fa-clock"></i> ۱۴ بهمن ۱۴۰۵</span>
           <h3>۱۵ راهکار عملی برای بهینه‌سازی دیگ موتورخانه</h3>
           <a href="#" class="read-more">ادامه مطلب <i class="fa-solid fa-arrow-left"></i></a>
         </div>
       </article>
-      <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="https://garmlux.com/wp-content/uploads/2026/01/Types-of-engine-room-boilers-1024x576.jpg" alt=""></div>
+      <article class="blog-card">
+        <div class="blog-img-wrap"><img src="https://garmlux.com/wp-content/uploads/2026/01/Types-of-engine-room-boilers-1024x576.jpg" alt="انواع دیگ موتورخانه" loading="lazy"></div>
         <div class="blog-body">
           <span class="blog-date"><i class="fa-regular fa-clock"></i> ۱۱ بهمن ۱۴۰۵</span>
           <h3>راهنمای جامع انواع دیگ موتورخانه</h3>
@@ -2241,405 +1862,558 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- ================= NEWSLETTER ================= -->
-<section class="newsletter-section">
-  <div class="container newsletter-inner">
-    <div class="newsletter-text">
-      <h3>عضویت در خبرنامه گرما پلاس</h3>
-      <p>از تخفیف‌ها و محصولات جدید قبل از همه باخبر شو</p>
-    </div>
-    <form class="newsletter-form" id="newsletterForm">
-      <input type="email" placeholder="ایمیل خود را وارد کنید" required>
-      <button type="submit">عضویت</button>
-    </form>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer class="site-footer">
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contact">
   <div class="container footer-grid">
     <div class="footer-col">
       <span class="footer-logo-text">گرما <span>پلاس</span></span>
-      <p>فروشگاه گرما پلاس تأمین‌کننده جدیدترین کالای گرمایشی، سرمایشی، آبرسانی و استخری با نمایندگی رسمی ایران رادیاتور و بوتان.</p>
+      <h3>گرما پلاس ساری</h3>
+      <p>فروشگاه تخصصی تأمین‌کننده جدیدترین کالای گرمایشی، سرمایشی، آبرسانی و تجهیزات استخر در مازندران، ساری — با ضمانت اصالت و پشتیبانی حرفه‌ای.</p>
+    </div>
+    <div class="footer-col">
+      <h4>آدرس و تماس</h4>
+      <p><i class="fa-solid fa-location-dot"></i> مازندران ، ساری ، خیابان شمشیربند </p>
+      <p><i class="fa-solid fa-phone"></i> <a href="tel:01133345678">011-12345678</a></p>
+      <p><i class="fa-solid fa-mobile-screen"></i> <a href="tel:09114202480">09111234678</a></p>
+      <p><i class="fa-regular fa-envelope"></i> <a href="mailto:info@garmlux.com">info@garmlux.com</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>ساعات پاسخگویی</h4>
+      <p><i class="fa-regular fa-clock"></i> شنبه تا چهارشنبه: 8 الی 22</p>
+      <p><i class="fa-regular fa-clock"></i> پنجشنبه: 8 الی 21</p>
+      <p><i class="fa-regular fa-clock"></i> جمعه: تعطیل</p>
       <div class="socials">
         <a href="#" aria-label="اینستاگرام"><i class="fa-brands fa-instagram"></i></a>
         <a href="#" aria-label="واتساپ"><i class="fa-brands fa-whatsapp"></i></a>
         <a href="#" aria-label="تلگرام"><i class="fa-brands fa-telegram"></i></a>
       </div>
     </div>
-    <div class="footer-col">
-      <h4>دسترسی سریع</h4>
-      <ul>
-        <li><a href="#">صفحه اصلی</a></li>
-        <li><a href="#discount">محصولات</a></li>
-        <li><a href="#">برندها</a></li>
-        <li><a href="#">مقالات</a></li>
-        <li><a href="#">تماس با ما</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>خدمات مشتریان</h4>
-      <ul>
-        <li><a href="#">پیگیری سفارش</a></li>
-        <li><a href="#">شرایط گارانتی</a></li>
-        <li><a href="#">رویه بازگشت کالا</a></li>
-        <li><a href="#">سوالات متداول</a></li>
-        <li><a href="#">حریم خصوصی</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>تماس با ما</h4>
-      <p><i class="fa-solid fa-location-dot"></i> مازندران، ....</p>
-      <p><i class="fa-solid fa-phone"></i> 011-12345678</p>
-      <p><i class="fa-regular fa-envelope"></i> info@garmlux.com</p>
-      <p><i class="fa-regular fa-clock"></i> شنبه تا چهارشنبه: 8 الی 22</p>
-    </div>
   </div>
   <div class="footer-bottom">
-    <p>© ۱۴۰۵ <strong>گرما پلاس</strong> — تمامی حقوق محفوظ است.</p>
+    <p>© ۱۴۰۵ <span>گرما پلاس ساری</span> — تمامی حقوق محفوظ است.</p>
   </div>
 </footer>
 
-<!-- ================= FLOATING CONTACT ================= -->
+<!-- ============ FLOATING CONTACT ============ -->
 <div class="floating-contact">
-  <button class="floating-btn" id="contactToggle"><i class="fa-regular fa-comment-dots"></i></button>
+  <button class="floating-btn" id="contactToggle" aria-label="راه‌های ارتباطی" aria-expanded="false">
+    <i class="fa-regular fa-comment-dots"></i>
+  </button>
   <div class="contact-links" id="contactLinks">
-    <a href="https://wa.me/09300650692" class="contact-item whatsapp" aria-label="واتساپ"><i class="fa-brands fa-whatsapp"></i></a>
-    <a href="tel:02191693658" class="contact-item phone" aria-label="تماس"><i class="fa-solid fa-phone"></i></a>
-    <a href="#" class="contact-item waze" aria-label="مسیریابی"><i class="fa-brands fa-waze"></i></a>
+    <a href="https://wa.me/091112345678" class="contact-item whatsapp" aria-label="واتساپ" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="tel:01112345678" class="contact-item phone" aria-label="تماس"><i class="fa-solid fa-phone"></i></a>
+    <a href="https://waze.com/ul?q=ساری" class="contact-item waze" aria-label="مسیریابی" target="_blank" rel="noopener"><i class="fa-brands fa-waze"></i></a>
   </div>
 </div>
 
-<!-- ================= SCROLL TOP ================= -->
-<button class="scroll-top" id="scrollTop" aria-label="بازگشت به بالا"><i class="fa-solid fa-chevron-up"></i></button>
+<!-- ============ DISCOUNT FLOAT ============ -->
+<div class="discount-float" id="discountFloat">
+  <img class="discount-float-img" id="discountFloatImg" src="" alt="">
+  <div class="discount-float-info">
+    <div class="discount-float-title" id="discountFloatTitle"></div>
+    <div class="discount-float-price" id="discountFloatPrice"></div>
+  </div>
+  <button class="discount-float-close" id="discountFloatClose" aria-label="بستن">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+</div>
+
+<!-- ============ SCROLL TOP ============ -->
+<button class="scroll-top" id="scrollTop" aria-label="بازگشت به بالا">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
 
 <script>
-/* ============ HELPERS ============ */
-const $=(s,c=document)=>c.querySelector(s);
-const $$=(s,c=document)=>[...c.querySelectorAll(s)];
-const fmt=n=>Number(n).toLocaleString('fa-IR')+' تومان';
+/* ============ DATA ============ */
+const products = [
+  { title: 'فیلتر شنی مگاپول MEGA POOL XA 1600', old: 6897000000, new: 6207000000, img: 'https://garmlux.com/wp-content/uploads/2026/10/titan-b0456f090f42f84f3a6f3cc2-1024x1024.webp' },
+  { title: 'فیلتر شنی مگاپول MEGA POOL XA 1400', old: 5689000000, new: 5120000000, img: 'https://garmlux.com/wp-content/uploads/2026/10/titan-9d6793b0be56b396be07b491-1024x1024.webp' },
+  { title: 'فیلتر شنی مگاپول MEGA POOL XA 1200', old: 3989000000, new: 3590000000, img: 'https://garmlux.com/wp-content/uploads/2026/10/titan-d2bc48321bd1331b034c0bf7-1024x1024.webp' },
+  { title: 'فیلتر شنی مگاپول MEGA POOL XA 1050', old: 3254000000, new: 2928000000, img: 'https://garmlux.com/wp-content/uploads/2026/10/titan-d2e5f1eb7b56f86de404c420-1024x1024.webp' },
+  { title: 'فیلتر شنی مگاپول MEGA POOL FPS 900', old: 1632000000, new: 1468000000, img: 'https://garmlux.com/wp-content/uploads/2026/10/titan-99fc157907ff778fbf22a8d8.webp' },
+  { title: 'فیلتر شنی مگاپول MEGA POOL FPS 760', old: 1224000000, new: 1101000000, img: 'https://garmlux.com/wp-content/uploads/2026/10/titan-622e69ccef4ae79823f8fc47.webp' },
+  { title: 'فیلتر شنی مگاپول MEGA POOL FPS 680', old: 855700000, new: 770000000, img: 'https://garmlux.com/wp-content/uploads/2026/10/titan-19f6c756f2df4dd44de92622.webp' },
+  { title: 'فیلتر شنی مگاپول MEGA POOL FPS 510', old: 710000000, new: 639000000, img: 'https://garmlux.com/wp-content/uploads/2026/10/titan-c327aa460dc6e3890dd1a266.webp' }
+];
 
-function showToast(msg,icon='fa-check'){
-  const t=document.createElement('div');
-  t.className='toast';
-  t.innerHTML=`<i class="fa-solid ${icon}"></i><span>${msg}</span>`;
-  $('#toastContainer').appendChild(t);
-  setTimeout(()=>{t.classList.add('out');setTimeout(()=>t.remove(),400)},2500);
+function formatPrice(n) { return n.toLocaleString('fa-IR') + ' تومان'; }
+
+/* ============ TOAST ============ */
+function showToast(message, type = 'info') {
+  const container = document.getElementById('toastContainer');
+  const icons = { success: 'fa-check-circle', info: 'fa-info-circle', error: 'fa-exclamation-circle' };
+  const toast = document.createElement('div');
+  toast.className = 'toast ' + type;
+  toast.innerHTML = `<i class="fa-solid ${icons[type]}"></i><span>${message}</span>`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add('removing');
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
 }
 
+/* ============ SCROLL PROGRESS & HEADER ============ */
+const header = document.getElementById('siteHeader');
+const scrollTopBtn = document.getElementById('scrollTop');
+const scrollProgress = document.getElementById('scrollProgress');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  header.classList.toggle('scrolled', scrollY > 50);
+  scrollTopBtn.classList.toggle('visible', scrollY > 400);
+  const height = document.documentElement.scrollHeight - window.innerHeight;
+  scrollProgress.style.width = (scrollY / height * 100) + '%';
+}, { passive: true });
+
 /* ============ THEME ============ */
-const themeToggle=$('#themeToggle');
-const savedTheme=localStorage.getItem('gp-theme')||'dark';
-if(savedTheme==='light')document.documentElement.setAttribute('data-theme','light');
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('garm-theme');
+if (savedTheme === 'light') document.body.classList.add('light-theme');
 
-themeToggle?.addEventListener('click',()=>{
-  const curr=document.documentElement.getAttribute('data-theme');
-  const next=curr==='light'?'dark':'light';
-  if(next==='light')document.documentElement.setAttribute('data-theme','light');
-  else document.documentElement.removeAttribute('data-theme');
-  localStorage.setItem('gp-theme',next);
-  showToast(next==='light'?'حالت روشن فعال شد':'حالت تاریک فعال شد',next==='light'?'fa-sun':'fa-moon');
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('light-theme');
+  const isLight = document.body.classList.contains('light-theme');
+  localStorage.setItem('garm-theme', isLight ? 'light' : 'dark');
+  showToast(isLight ? 'تم روشن فعال شد' : 'تم تاریک فعال شد', 'info');
 });
-
-/* ============ SCROLL ============ */
-const header=$('#siteHeader');
-const progress=$('#scrollProgress');
-const scrollTopBtn=$('#scrollTop');
-
-window.addEventListener('scroll',()=>{
-  const s=window.scrollY;
-  const max=document.documentElement.scrollHeight-window.innerHeight;
-  progress.style.width=(s/max*100)+'%';
-  header.classList.toggle('scrolled',s>50);
-  scrollTopBtn.classList.toggle('visible',s>400);
-},{passive:true});
-
-scrollTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
 /* ============ MOBILE DRAWER ============ */
-const mobileDrawer=$('#mobileDrawer');
-const drawerOverlay=$('#drawerOverlay');
-const menuToggle=$('#menuToggle');
+const menuToggle = document.getElementById('menuToggle');
+const mobileDrawer = document.getElementById('mobileDrawer');
+const drawerClose = document.getElementById('drawerClose');
+const drawerBackdrop = document.getElementById('drawerBackdrop');
 
-function openDrawer(){mobileDrawer.classList.add('open');drawerOverlay.classList.add('open');document.body.style.overflow='hidden'}
-function closeDrawer(){mobileDrawer.classList.remove('open');drawerOverlay.classList.remove('open');document.body.style.overflow=''}
-menuToggle?.addEventListener('click',openDrawer);
-$('#drawerClose')?.addEventListener('click',closeDrawer);
-drawerOverlay?.addEventListener('click',closeDrawer);
+function openDrawer() {
+  mobileDrawer.classList.add('open');
+  menuToggle.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  mobileDrawer.classList.remove('open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  if (!document.getElementById('cartDrawer').classList.contains('open')) {
+    document.body.style.overflow = '';
+  }
+}
+menuToggle.addEventListener('click', openDrawer);
+drawerClose.addEventListener('click', closeDrawer);
+drawerBackdrop.addEventListener('click', closeDrawer);
 
-$$('.drawer-nav button').forEach(btn=>{
-  btn.addEventListener('click',()=>btn.parentElement.classList.toggle('open'));
+/* ============ CART ============ */
+let cart = JSON.parse(localStorage.getItem('garm-cart') || '[]');
+const cartDrawer = document.getElementById('cartDrawer');
+const cartBackdrop = document.getElementById('cartBackdrop');
+const cartClose = document.getElementById('cartClose');
+const cartToggle = document.getElementById('cartToggle');
+const cartItems = document.getElementById('cartItems');
+const cartFooter = document.getElementById('cartFooter');
+const cartTotalPrice = document.getElementById('cartTotalPrice');
+const cartBadge = document.querySelector('.cart-count');
+
+function saveCart() {
+  localStorage.setItem('garm-cart', JSON.stringify(cart));
+}
+
+function updateCartUI() {
+  const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  cartBadge.textContent = totalCount;
+  cartBadge.style.transform = 'scale(1.4)';
+  setTimeout(() => cartBadge.style.transform = 'scale(1)', 200);
+
+  if (cart.length === 0) {
+    cartItems.innerHTML = `
+      <div class="cart-empty">
+        <i class="fa-regular fa-cart-shopping"></i>
+        <p>سبد خرید شما خالی است</p>
+      </div>`;
+    cartFooter.style.display = 'none';
+    return;
+  }
+
+  cartItems.innerHTML = cart.map((item, index) => `
+    <div class="cart-item">
+      <img src="${item.img}" alt="${item.title}">
+      <div class="cart-item-info">
+        <div class="cart        <div class="cart-item-title">${item.title}</div>
+        <div class="cart-item-price">${formatPrice(item.price)} × ${item.qty}</div>
+      </div>
+      <button class="cart-item-remove" data-index="${index}" aria-label="حذف">
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
+    </div>
+  `).join('');
+
+  const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  cartTotalPrice.textContent = formatPrice(total);
+  cartFooter.style.display = 'flex';
+
+  cartItems.querySelectorAll('.cart-item-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.index);
+      cart.splice(idx, 1);
+      saveCart();
+      updateCartUI();
+      showToast('محصول از سبد حذف شد', 'info');
+    });
+  });
+}
+
+function openCart() {
+  cartDrawer.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  cartDrawer.classList.remove('open');
+  if (!mobileDrawer.classList.contains('open')) {
+    document.body.style.overflow = '';
+  }
+}
+cartToggle.addEventListener('click', openCart);
+cartClose.addEventListener('click', closeCart);
+cartBackdrop.addEventListener('click', closeCart);
+document.getElementById('cartCheckout').addEventListener('click', () => {
+  if (cart.length === 0) return;
+  showToast('سفارش شما ثبت شد! با شما تماس می‌گیریم 🎉', 'success');
+  cart = [];
+  saveCart();
+  updateCartUI();
+  setTimeout(closeCart, 800);
 });
 
-/* ============ SEARCH ============ */
-const searchOverlay=$('#searchOverlay');
-$('#searchToggle')?.addEventListener('click',()=>{
+updateCartUI();
+
+function addToCart(product) {
+  const existing = cart.find(item => item.title === product.title);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  saveCart();
+  updateCartUI();
+  showToast('به سبد خرید اضافه شد ✓', 'success');
+}
+
+/* ============ SEARCH OVERLAY ============ */
+const searchOverlay = document.getElementById('searchOverlay');
+const closeSearch = document.getElementById('closeSearch');
+const searchInput = document.getElementById('searchInput');
+const heroSearchInput = document.querySelector('.hero-search input');
+const searchResults = document.getElementById('searchResults');
+const searchHints = document.getElementById('searchHints');
+
+function openSearch(prefill) {
   searchOverlay.classList.add('active');
-  setTimeout(()=>$('#searchInput')?.focus(),100);
-});
-$('#closeSearch')?.addEventListener('click',()=>searchOverlay.classList.remove('active'));
-searchOverlay?.addEventListener('click',e=>{if(e.target===searchOverlay)searchOverlay.classList.remove('active')});
+  document.body.style.overflow = 'hidden';
+  if (prefill) {
+    searchInput.value = prefill;
+    performSearch(prefill);
+  }
+  setTimeout(() => searchInput.focus(), 60);
+}
+function closeSearchFn() {
+  searchOverlay.classList.remove('active');
+  if (!mobileDrawer.classList.contains('open') && !cartDrawer.classList.contains('open')) {
+    document.body.style.overflow = '';
+  }
+}
 
-$('#searchInput')?.addEventListener('input',e=>{
-  const q=e.target.value.trim();
-  $$('.suggestion-item').forEach(item=>{
-    const txt=item.querySelector('.suggestion-text').textContent;
-    item.style.display=txt.includes(q)||!q?'flex':'none';
+function performSearch(query) {
+  const q = query.trim().toLowerCase();
+  if (!q) {
+    searchResults.innerHTML = '';
+    searchHints.style.display = 'flex';
+    return;
+  }
+  searchHints.style.display = 'none';
+  const results = products.filter(p => p.title.toLowerCase().includes(q));
+  if (results.length === 0) {
+    searchResults.innerHTML = `
+      <div style="text-align:center; padding:30px; color: var(--text-muted);">
+        <i class="fa-solid fa-magnifying-glass" style="font-size:2rem; opacity:.4; display:block; margin-bottom:12px;"></i>
+        نتیجه‌ای یافت نشد
+      </div>`;
+    return;
+  }
+  searchResults.innerHTML = results.map(p => `
+    <div class="search-result-item" data-title="${p.title}">
+      <img src="${p.img}" alt="${p.title}">
+      <div class="search-result-title">${p.title}</div>
+      <div class="search-result-price">${formatPrice(p.new)}</div>
+    </div>
+  `).join('');
+
+  searchResults.querySelectorAll('.search-result-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const title = item.dataset.title;
+      const product = products.find(p => p.title === title);
+      if (product) {
+        addToCart({ title: product.title, price: product.new, img: product.img });
+        closeSearchFn();
+      }
+    });
+  });
+}
+
+searchInput.addEventListener('input', (e) => performSearch(e.target.value));
+closeSearch.addEventListener('click', closeSearchFn);
+searchOverlay.addEventListener('click', (e) => {
+  if (e.target === searchOverlay) closeSearchFn();
+});
+document.getElementById('searchToggleBtn').addEventListener('click', () => openSearch());
+
+document.querySelector('.hero-search').addEventListener('submit', (e) => {
+  e.preventDefault();
+  openSearch(heroSearchInput.value.trim());
+});
+
+document.querySelectorAll('.search-hint').forEach(hint => {
+  hint.addEventListener('click', (e) => {
+    e.preventDefault();
+    searchInput.value = hint.textContent;
+    performSearch(hint.textContent);
+    searchInput.focus();
   });
 });
 
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeSearchFn();
+    closeDrawer();
+    closeCart();
+    closePromo();
+  }
+});
+
 /* ============ TABS ============ */
-$$('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const target=btn.dataset.tab;
-    $$('.tab-btn').forEach(b=>b.classList.remove('active'));
-    $$('.tab-panel').forEach(p=>p.classList.remove('active'));
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    tabBtns.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    tabPanels.forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
-    $(`#tab-${target}`)?.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    document.getElementById('tab-' + target)?.classList.add('active');
   });
 });
 
 /* ============ COUNTDOWN ============ */
-const endDate=new Date();
-endDate.setDate(endDate.getDate()+30);
+const endDate = new Date();
+endDate.setDate(endDate.getDate() + 30);
 
-function updateCountdown(){
-  const diff=endDate.getTime()-Date.now();
-  if(diff<=0)return;
-  const d=Math.floor(diff/864e5);
-  const h=Math.floor(diff%864e5/36e5);
-  const m=Math.floor(diff%36e5/6e4);
-  const s=Math.floor(diff%6e4/1e3);
-  $('#cd-days').textContent=String(d).padStart(2,'0');
-  $('#cd-hours').textContent=String(h).padStart(2,'0');
-  $('#cd-min').textContent=String(m).padStart(2,'0');
-  $('#cd-sec').textContent=String(s).padStart(2,'0');
+function updateCountdown() {
+  const now = new Date().getTime();
+  const diff = endDate.getTime() - now;
+  if (diff <= 0) return;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('cd-min').textContent = String(mins).padStart(2, '0');
+  document.getElementById('cd-sec').textContent = String(secs).padStart(2, '0');
 }
 updateCountdown();
-setInterval(updateCountdown,1000);
+setInterval(updateCountdown, 1000);
 
-/* ============ PRODUCTS ============ */
-const products=[
-  {title:'فیلتر شنی مگاپول MEGA POOL XA 1600',old:6897000000,new:6207000000,img:'https://garmlux.com/wp-content/uploads/2026/10/titan-b0456f090f42f84f3a6f3cc2-1024x1024.webp',rating:5},
-  {title:'فیلتر شنی مگاپول MEGA POOL XA 1400',old:5689000000,new:5120000000,img:'https://garmlux.com/wp-content/uploads/2026/10/titan-9d6793b0be56b396be07b491-1024x1024.webp',rating:4.5},
-  {title:'فیلتر شنی مگاپول MEGA POOL XA 1200',old:3989000000,new:3590000000,img:'https://garmlux.com/wp-content/uploads/2026/10/titan-d2bc48321bd1331b034c0bf7-1024x1024.webp',rating:5},
-  {title:'فیلتر شنی مگاپول MEGA POOL XA 1050',old:3254000000,new:2928000000,img:'https://garmlux.com/wp-content/uploads/2026/10/titan-d2e5f1eb7b56f86de404c420-1024x1024.webp',rating:4},
-  {title:'فیلتر شنی مگاپول MEGA POOL FPS 900',old:1632000000,new:1468000000,img:'https://garmlux.com/wp-content/uploads/2026/10/titan-99fc157907ff778fbf22a8d8.webp',rating:4.5},
-  {title:'فیلتر شنی مگاپول MEGA POOL FPS 760',old:1224000000,new:1101000000,img:'https://garmlux.com/wp-content/uploads/2026/10/titan-622e69ccef4ae79823f8fc47.webp',rating:5},
-  {title:'فیلتر شنی مگاپول MEGA POOL FPS 680',old:855700000,new:770000000,img:'https://garmlux.com/wp-content/uploads/2026/10/titan-19f6c756f2df4dd44de92622.webp',rating:4},
-  {title:'فیلتر شنی مگاپول MEGA POOL FPS 510',old:710000000,new:639000000,img:'https://garmlux.com/wp-content/uploads/2026/10/titan-c327aa460dc6e3890dd1a266.webp',rating:5}
-];
-
-function renderStars(r){
-  let html='';
-  for(let i=1;i<=5;i++){
-    if(r>=i)html+='<i class="fa-solid fa-star"></i>';
-    else if(r>=i-0.5)html+='<i class="fa-solid fa-star-half-stroke"></i>';
-    else html+='<i class="fa-regular fa-star"></i>';
-  }
-  return html;
-}
-
-const track=$('#discountTrack');
-products.forEach(p=>{
-  const disc=Math.round((1-p.new/p.old)*100);
-  const card=document.createElement('div');
-  card.className='product-card';
-  card.dataset.price=p.new;
-  card.dataset.title=p.title;
-  card.dataset.img=p.img;
-  card.innerHTML=`
+/* ============ PRODUCT CAROUSEL ============ */
+const track = document.getElementById('discountTrack');
+products.forEach(p => {
+  const discount = Math.round((1 - p.new / p.old) * 100);
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.innerHTML = `
     <div class="product-img">
-      <span class="sale-badge">-${disc}%</span>
-      <span class="stock-badge">موجود</span>
-      <div class="product-actions">
-        <button class="product-action-btn" aria-label="مقایسه"><i class="fa-solid fa-code-compare"></i></button>
-        <button class="product-action-btn" aria-label="علاقه‌مندی"><i class="fa-regular fa-heart"></i></button>
-      </div>
+      <span class="sale-badge">-${discount}%</span>
       <img src="${p.img}" alt="${p.title}" loading="lazy">
     </div>
     <div class="product-body">
-      <div class="product-rating">${renderStars(p.rating)}<span>(${p.rating})</span></div>
       <h3 class="product-title">${p.title}</h3>
       <div class="product-price">
-        <span class="old-price">${fmt(p.old)}</span>
-        <span class="new-price">${fmt(p.new)}</span>
+        <span class="old-price">${formatPrice(p.old)}</span>
+        <span class="new-price">${formatPrice(p.new)}</span>
       </div>
-      <button class="add-to-cart"><i class="fa-solid fa-cart-plus"></i> افزودن به سبد</button>
-    </div>`;
+      <button class="add-to-cart">افزودن به سبد خرید</button>
+    </div>
+  `;
   track.appendChild(card);
+
+  // Tilt effect
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rx = (y - cy) / 20;
+    const ry = (cx - x) / 20;
+    card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+
+  card.querySelector('.add-to-cart').addEventListener('click', (e) => {
+    e.stopPropagation();
+    addToCart({ title: p.title, price: p.new, img: p.img });
+    const btn = e.target;
+    const original = btn.textContent;
+    btn.textContent = '✓ اضافه شد';
+    btn.style.background = '#25D366';
+    btn.style.color = '#fff';
+    btn.style.borderColor = '#25D366';
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 1200);
+  });
 });
 
-const prevBtn=$('.carousel-arrow.prev');
-const nextBtn=$('.carousel-arrow.next');
-const step=()=>track.clientWidth*.8;
-prevBtn.addEventListener('click',()=>track.scrollBy({left:step(),behavior:'smooth'}));
-nextBtn.addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
+const prevBtn = document.querySelector('.carousel-arrow.prev');
+const nextBtn = document.querySelector('.carousel-arrow.next');
 
-function updateArrows(){
-  prevBtn.disabled=track.scrollLeft>=track.scrollWidth-track.clientWidth-5;
-  nextBtn.disabled=track.scrollLeft<=5;
+function scrollAmount() { return track.clientWidth * 0.8; }
+prevBtn.addEventListener('click', () => track.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+nextBtn.addEventListener('click', () => track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+
+function updateArrows() {
+  prevBtn.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 5;
+  nextBtn.disabled = track.scrollLeft <= 5;
 }
-track.addEventListener('scroll',updateArrows);
+track.addEventListener('scroll', updateArrows, { passive: true });
 updateArrows();
 
-/* ============ CART ============ */
-const cartDrawer=$('#cartDrawer');
-const cartBody=$('#cartBody');
-const cartEmpty=$('#cartEmpty');
-const cartFooter=$('#cartFooter');
-const cartCountEl=$('#cartCount');
-const cartTotalEl=$('#cartTotal');
-let cart=JSON.parse(localStorage.getItem('gp-cart')||'[]');
-
-function openCart(){cartDrawer.classList.add('open');document.body.style.overflow='hidden'}
-function closeCart(){cartDrawer.classList.remove('open');document.body.style.overflow=''}
-
-$('#cartToggle')?.addEventListener('click',openCart);
-$('#cartClose')?.addEventListener('click',closeCart);
-
-function renderCart(){
-  $$('.cart-item',cartBody).forEach(el=>el.remove());
-  if(cart.length===0){
-    cartEmpty.style.display='flex';
-    cartFooter.style.display='none';
-    cartCountEl.textContent='0';
-    cartCountEl.style.display='none';
-    return;
-  }
-  cartEmpty.style.display='none';
-  cartFooter.style.display='block';
-  let total=0;
-  cart.forEach((item,i)=>{
-    total+=item.price;
-    const el=document.createElement('div');
-    el.className='cart-item';
-    el.innerHTML=`
-      <img src="${item.img}" alt="">
-      <div class="cart-item-info">
-        <div class="cart-item-title">${item.title}</div>
-        <div class="cart-item-price">${fmt(item.price)}</div>
-      </div>
-      <button class="cart-item-remove" data-idx="${i}"><i class="fa-solid fa-trash"></i></button>`;
-    cartBody.appendChild(el);
-  });
-  cartTotalEl.textContent=fmt(total);
-  cartCountEl.textContent=cart.length;
-  cartCountEl.style.display='flex';
-  localStorage.setItem('gp-cart',JSON.stringify(cart));
-}
-
-document.addEventListener('click',e=>{
-  if(e.target.closest('.add-to-cart')){
-    e.preventDefault();
-    const card=e.target.closest('.product-card');
-    cart.push({title:card.dataset.title,price:+card.dataset.price,img:card.dataset.img});
-    renderCart();
-    showToast('محصول به سبد خرید اضافه شد','fa-cart-plus');
-    const btn=e.target.closest('.add-to-cart');
-    const html=btn.innerHTML;
-    btn.innerHTML='✓ اضافه شد';
-    btn.style.background='#25D366';
-    btn.style.color='#fff';
-    btn.style.borderColor='#25D366';
-    setTimeout(()=>{
-      btn.innerHTML=html;
-      btn.style.background='';
-      btn.style.color='';
-      btn.style.borderColor='';
-    },1200);
-  }
-  const rm=e.target.closest('.cart-item-remove');
-  if(rm){
-    cart.splice(+rm.dataset.idx,1);
-    renderCart();
-    showToast('محصول حذف شد','fa-trash');
-  }
-});
-
-renderCart();
-
-/* ============ COUPON COPY ============ */
-$('#couponCode')?.addEventListener('click',()=>{
-  const code=$('#couponCode span').textContent;
-  navigator.clipboard?.writeText(code).then(()=>{
-    showToast('کد تخفیف کپی شد: '+code,'fa-copy');
-  }).catch(()=>{
-    showToast('کد تخفیف: '+code,'fa-copy');
-  });
-});
-
-/* ============ NEWSLETTER ============ */
-$('#newsletterForm')?.addEventListener('submit',e=>{
-  e.preventDefault();
-  e.target.reset();
-  showToast('عضویت شما در خبرنامه ثبت شد','fa-envelope-circle-check');
-});
-
 /* ============ FLOATING CONTACT ============ */
-const contactToggle=$('#contactToggle');
-const contactLinks=$('#contactLinks');
-contactToggle?.addEventListener('click',()=>{
-  contactLinks.classList.toggle('active');
-  const icon=contactToggle.querySelector('i');
-  icon.className=contactLinks.classList.contains('active')
-    ?'fa-solid fa-xmark':'fa-regular fa-comment-dots';
+const contactToggle = document.getElementById('contactToggle');
+const contactLinks = document.getElementById('contactLinks');
+contactToggle.addEventListener('click', () => {
+  const isActive = contactLinks.classList.toggle('active');
+  contactToggle.setAttribute('aria-expanded', isActive);
+  const icon = contactToggle.querySelector('i');
+  icon.className = isActive ? 'fa-solid fa-xmark' : 'fa-regular fa-comment-dots';
 });
 
-/* ============ REVEAL ============ */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting){
-      en.target.classList.add('visible');
-      io.unobserve(en.target);
-    }
-  });
-},{threshold:.1});
-$$('.reveal').forEach(el=>io.observe(el));
-
-/* ============ COUNTER ============ */
-const counterIO=new IntersectionObserver(entries=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting){
-      const el=en.target;
-      const target=+el.dataset.count;
-      const duration=1800;
-      const start=performance.now();
-      function animate(now){
-        const p=Math.min((now-start)/duration,1);
-        const val=Math.floor(target*(1-Math.pow(1-p,3)));
-        el.textContent=val.toLocaleString('fa-IR');
-        if(p<1)requestAnimationFrame(animate);
-      }
-      requestAnimationFrame(animate);
-      counterIO.unobserve(el);
-    }
-  });
-},{threshold:.5});
-$$('[data-count]').forEach(el=>counterIO.observe(el));
+/* ============ SCROLL TOP ============ */
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 /* ============ SMOOTH SCROLL ============ */
-$$('a[href^="#"]').forEach(link=>{
-  link.addEventListener('click',e=>{
-    const id=link.getAttribute('href');
-    if(id.length>1){
-      const t=document.querySelector(id);
-      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const id = link.getAttribute('href');
+    if (id.length > 1) {
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        closeDrawer();
+      }
     }
   });
 });
 
-/* ============ KEYBOARD ============ */
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    searchOverlay.classList.remove('active');
-    closeDrawer();
-    closeCart();
+/* ============ PROMO POPUP ============ */
+const promoPopup = document.getElementById('promoPopup');
+const promoClose = document.getElementById('promoClose');
+const promoCta = document.getElementById('promoCta');
+const promoCode = document.getElementById('promoCode');
+
+let promoShown = sessionStorage.getItem('garm-promo-shown');
+if (!promoShown) {
+  setTimeout(() => {
+    promoPopup.classList.add('active');
+    sessionStorage.setItem('garm-promo-shown', '1');
+  }, 8000);
+}
+
+function closePromo() {
+  promoPopup.classList.remove('active');
+}
+promoClose.addEventListener('click', closePromo);
+promoPopup.addEventListener('click', (e) => {
+  if (e.target === promoPopup) closePromo();
+});
+
+promoCode.addEventListener('click', () => {
+  navigator.clipboard.writeText('GARMLUX15').then(() => {
+    showToast('کد تخفیف کپی شد ✓', 'success');
+  });
+});
+
+promoCta.addEventListener('click', () => {
+  navigator.clipboard.writeText('GARMLUX15').then(() => {
+    showToast('کد GARMLUX15 کپی شد — هنگام خرید وارد کنید', 'success');
+  });
+  closePromo();
+});
+
+/* ============ DISCOUNT FLOAT ============ */
+const discountFloat = document.getElementById('discountFloat');
+const discountFloatImg = document.getElementById('discountFloatImg');
+const discountFloatTitle = document.getElementById('discountFloatTitle');
+const discountFloatPrice = document.getElementById('discountFloatPrice');
+const discountFloatClose = document.getElementById('discountFloatClose');
+
+let currentFloatIndex = 0;
+let discountFloatDismissed = false;
+
+function showDiscountFloat() {
+  if (discountFloatDismissed) return;
+  const p = products[currentFloatIndex % products.length];
+  const discount = Math.round((1 - p.new / p.old) * 100);
+  discountFloatImg.src = p.img;
+  discountFloatTitle.textContent = p.title;
+  discountFloatPrice.textContent = `-${discount}% · ${formatPrice(p.new)}`;
+  discountFloat.classList.add('show');
+
+  setTimeout(() => {
+    discountFloat.classList.remove('show');
+  }, 5000);
+
+  currentFloatIndex++;
+}
+
+setTimeout(() => {
+  showDiscountFloat();
+  setInterval(showDiscountFloat, 25000);
+}, 15000);
+
+discountFloat.addEventListener('click', (e) => {
+  if (e.target.closest('.discount-float-close')) return;
+  const p = products[(currentFloatIndex - 1) % products.length];
+  if (p) {
+    addToCart({ title: p.title, price: p.new, img: p.img });
+    discountFloat.classList.remove('show');
   }
+});
+
+discountFloatClose.addEventListener('click', (e) => {
+  e.stopPropagation();
+  discountFloat.classList.remove('show');
+  discountFloatDismissed = true;
+});
+
+/* ============ CLOSE DRAWER ON RESIZE ============ */
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 1100) closeDrawer();
 });
 
 /* ============ WELCOME TOAST ============ */
-setTimeout(()=>showToast('به گرما پلاس خوش آمدید 🔥','fa-fire'),1500);
+setTimeout(() => {
+  showToast('به گرما پلاس ساری خوش آمدید 👋', 'success');
+}, 1500);
 </script>
 </body>
 </html>
